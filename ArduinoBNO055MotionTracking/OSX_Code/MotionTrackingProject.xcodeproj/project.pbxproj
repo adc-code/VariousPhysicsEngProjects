@@ -1,0 +1,462 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		058474760C160A3D00E09F37 /* MouseIgnoringBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 058474750C160A3D00E09F37 /* MouseIgnoringBox.m */; };
+		05AD77780BC2F2C800656B4D /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05AD77770BC2F2C800656B4D /* OpenGL.framework */; };
+		05AD77840BC2F2E700656B4D /* MainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05AD777D0BC2F2E700656B4D /* MainController.m */; };
+		05AD77850BC2F2E700656B4D /* MyOpenGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05AD777F0BC2F2E700656B4D /* MyOpenGLView.m */; };
+		05AD77860BC2F2E700656B4D /* Scene.m in Sources */ = {isa = PBXBuildFile; fileRef = 05AD77810BC2F2E700656B4D /* Scene.m */; };
+		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
+		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
+		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		950FE66A1CCC1D5900782897 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 950FE6691CCC1D5900782897 /* Images.xcassets */; };
+		950FE66F1CCC51F400782897 /* FileOutputState.m in Sources */ = {isa = PBXBuildFile; fileRef = 950FE66E1CCC51F400782897 /* FileOutputState.m */; };
+		950FE6721CCD068700782897 /* ReachOutputState.m in Sources */ = {isa = PBXBuildFile; fileRef = 950FE6711CCD068700782897 /* ReachOutputState.m */; };
+		950FE6771CCD2EE900782897 /* IMG_target1.png in Resources */ = {isa = PBXBuildFile; fileRef = 950FE6731CCD2EE900782897 /* IMG_target1.png */; };
+		950FE6781CCD2EE900782897 /* IMG_target2.png in Resources */ = {isa = PBXBuildFile; fileRef = 950FE6741CCD2EE900782897 /* IMG_target2.png */; };
+		950FE6791CCD2EE900782897 /* IMG_target3.png in Resources */ = {isa = PBXBuildFile; fileRef = 950FE6751CCD2EE900782897 /* IMG_target3.png */; };
+		950FE67A1CCD2EE900782897 /* IMG_target4.png in Resources */ = {isa = PBXBuildFile; fileRef = 950FE6761CCD2EE900782897 /* IMG_target4.png */; };
+		950FE67C1CCF1F2800782897 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 950FE67B1CCF1F2800782897 /* GLKit.framework */; };
+		9567062D1CC587990080F3EC /* ORSSerialPortManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9567062C1CC587990080F3EC /* ORSSerialPortManager.m */; };
+		9567062F1CC587D30080F3EC /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9567062E1CC587D30080F3EC /* IOKit.framework */; };
+		956706321CC588020080F3EC /* ORSSerialPort.m in Sources */ = {isa = PBXBuildFile; fileRef = 956706311CC588020080F3EC /* ORSSerialPort.m */; };
+		956706351CC5881A0080F3EC /* ORSSerialBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 956706341CC5881A0080F3EC /* ORSSerialBuffer.m */; };
+		9567063A1CC594040080F3EC /* ArduinoConnectWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 956706381CC594040080F3EC /* ArduinoConnectWindowController.m */; };
+		9567063B1CC594040080F3EC /* ArduinoConnectWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 956706391CC594040080F3EC /* ArduinoConnectWindowController.xib */; };
+		956706401CC5D6740080F3EC /* CalibrateWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9567063E1CC5D6740080F3EC /* CalibrateWindowController.m */; };
+		956706411CC5D6740080F3EC /* CalibrateWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9567063F1CC5D6740080F3EC /* CalibrateWindowController.xib */; };
+		956706451CC5D9700080F3EC /* OutputDataWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 956706431CC5D9700080F3EC /* OutputDataWindowController.m */; };
+		956706461CC5D9700080F3EC /* OutputDataWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 956706441CC5D9700080F3EC /* OutputDataWindowController.xib */; };
+		9567064A1CC5DB0D0080F3EC /* TrackPositionsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 956706481CC5DB0D0080F3EC /* TrackPositionsWindowController.m */; };
+		9567064B1CC5DB0D0080F3EC /* TrackPositionsWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 956706491CC5DB0D0080F3EC /* TrackPositionsWindowController.xib */; };
+		9567064F1CC5DD410080F3EC /* ReachTestWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9567064D1CC5DD410080F3EC /* ReachTestWindowController.m */; };
+		956706501CC5DD410080F3EC /* ReachTestWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9567064E1CC5DD410080F3EC /* ReachTestWindowController.xib */; };
+		9567066D1CC710FA0080F3EC /* VisualizationOptionsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9567066B1CC710FA0080F3EC /* VisualizationOptionsWindowController.m */; };
+		9567066E1CC710FA0080F3EC /* VisualizationOptionsWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9567066C1CC710FA0080F3EC /* VisualizationOptionsWindowController.xib */; };
+		956706711CC732510080F3EC /* PositionTrace.m in Sources */ = {isa = PBXBuildFile; fileRef = 956706701CC732510080F3EC /* PositionTrace.m */; };
+		95FB5E561CCB06F200AB89E6 /* ArmState.m in Sources */ = {isa = PBXBuildFile; fileRef = 95FB5E551CCB06F200AB89E6 /* ArmState.m */; };
+		AFBA639B170A3315004A98A0 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = AFBA6399170A3315004A98A0 /* MainMenu.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		058474740C160A3D00E09F37 /* MouseIgnoringBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MouseIgnoringBox.h; sourceTree = "<group>"; };
+		058474750C160A3D00E09F37 /* MouseIgnoringBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MouseIgnoringBox.m; sourceTree = "<group>"; };
+		05AD77770BC2F2C800656B4D /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = /System/Library/Frameworks/OpenGL.framework; sourceTree = "<absolute>"; };
+		05AD777C0BC2F2E700656B4D /* MainController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = MainController.h; sourceTree = "<group>"; };
+		05AD777D0BC2F2E700656B4D /* MainController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = MainController.m; sourceTree = "<group>"; };
+		05AD777E0BC2F2E700656B4D /* MyOpenGLView.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = MyOpenGLView.h; sourceTree = "<group>"; };
+		05AD777F0BC2F2E700656B4D /* MyOpenGLView.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = MyOpenGLView.m; sourceTree = "<group>"; };
+		05AD77800BC2F2E700656B4D /* Scene.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Scene.h; sourceTree = "<group>"; };
+		05AD77810BC2F2E700656B4D /* Scene.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = Scene.m; sourceTree = "<group>"; };
+		05E363560BC320780089D3DE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = /System/Library/Frameworks/QuartzCore.framework; sourceTree = "<absolute>"; };
+		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		32CA4F630368D1EE00C91783 /* MotionTrackingProject_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MotionTrackingProject_Prefix.pch; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		8D1107320486CEB800E47090 /* MotionTrackingProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MotionTrackingProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		950FE6691CCC1D5900782897 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = MotionTrackingProject/Images.xcassets; sourceTree = "<group>"; };
+		950FE66D1CCC51F400782897 /* FileOutputState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileOutputState.h; sourceTree = "<group>"; };
+		950FE66E1CCC51F400782897 /* FileOutputState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileOutputState.m; sourceTree = "<group>"; };
+		950FE6701CCD068700782897 /* ReachOutputState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReachOutputState.h; sourceTree = "<group>"; };
+		950FE6711CCD068700782897 /* ReachOutputState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReachOutputState.m; sourceTree = "<group>"; };
+		950FE6731CCD2EE900782897 /* IMG_target1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IMG_target1.png; sourceTree = "<group>"; };
+		950FE6741CCD2EE900782897 /* IMG_target2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IMG_target2.png; sourceTree = "<group>"; };
+		950FE6751CCD2EE900782897 /* IMG_target3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IMG_target3.png; sourceTree = "<group>"; };
+		950FE6761CCD2EE900782897 /* IMG_target4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IMG_target4.png; sourceTree = "<group>"; };
+		950FE67B1CCF1F2800782897 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		9567062B1CC587990080F3EC /* ORSSerialPortManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORSSerialPortManager.h; sourceTree = "<group>"; };
+		9567062C1CC587990080F3EC /* ORSSerialPortManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ORSSerialPortManager.m; sourceTree = "<group>"; };
+		9567062E1CC587D30080F3EC /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		956706301CC588020080F3EC /* ORSSerialPort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORSSerialPort.h; sourceTree = "<group>"; };
+		956706311CC588020080F3EC /* ORSSerialPort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ORSSerialPort.m; sourceTree = "<group>"; };
+		956706331CC5881A0080F3EC /* ORSSerialBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORSSerialBuffer.h; sourceTree = "<group>"; };
+		956706341CC5881A0080F3EC /* ORSSerialBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ORSSerialBuffer.m; sourceTree = "<group>"; };
+		956706371CC594040080F3EC /* ArduinoConnectWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArduinoConnectWindowController.h; sourceTree = "<group>"; };
+		956706381CC594040080F3EC /* ArduinoConnectWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArduinoConnectWindowController.m; sourceTree = "<group>"; };
+		956706391CC594040080F3EC /* ArduinoConnectWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArduinoConnectWindowController.xib; sourceTree = "<group>"; };
+		9567063D1CC5D6740080F3EC /* CalibrateWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalibrateWindowController.h; sourceTree = "<group>"; };
+		9567063E1CC5D6740080F3EC /* CalibrateWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalibrateWindowController.m; sourceTree = "<group>"; };
+		9567063F1CC5D6740080F3EC /* CalibrateWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CalibrateWindowController.xib; sourceTree = "<group>"; };
+		956706421CC5D9700080F3EC /* OutputDataWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutputDataWindowController.h; sourceTree = "<group>"; };
+		956706431CC5D9700080F3EC /* OutputDataWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutputDataWindowController.m; sourceTree = "<group>"; };
+		956706441CC5D9700080F3EC /* OutputDataWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutputDataWindowController.xib; sourceTree = "<group>"; };
+		956706471CC5DB0D0080F3EC /* TrackPositionsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackPositionsWindowController.h; sourceTree = "<group>"; };
+		956706481CC5DB0D0080F3EC /* TrackPositionsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackPositionsWindowController.m; sourceTree = "<group>"; };
+		956706491CC5DB0D0080F3EC /* TrackPositionsWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TrackPositionsWindowController.xib; sourceTree = "<group>"; };
+		9567064C1CC5DD410080F3EC /* ReachTestWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReachTestWindowController.h; sourceTree = "<group>"; };
+		9567064D1CC5DD410080F3EC /* ReachTestWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReachTestWindowController.m; sourceTree = "<group>"; };
+		9567064E1CC5DD410080F3EC /* ReachTestWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReachTestWindowController.xib; sourceTree = "<group>"; };
+		9567066A1CC710FA0080F3EC /* VisualizationOptionsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VisualizationOptionsWindowController.h; sourceTree = "<group>"; };
+		9567066B1CC710FA0080F3EC /* VisualizationOptionsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VisualizationOptionsWindowController.m; sourceTree = "<group>"; };
+		9567066C1CC710FA0080F3EC /* VisualizationOptionsWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VisualizationOptionsWindowController.xib; sourceTree = "<group>"; };
+		9567066F1CC732510080F3EC /* PositionTrace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PositionTrace.h; sourceTree = "<group>"; };
+		956706701CC732510080F3EC /* PositionTrace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PositionTrace.m; sourceTree = "<group>"; };
+		95FB5E541CCB06F200AB89E6 /* ArmState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArmState.h; sourceTree = "<group>"; };
+		95FB5E551CCB06F200AB89E6 /* ArmState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArmState.m; sourceTree = "<group>"; };
+		AFBA639A170A3315004A98A0 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8D11072E0486CEB800E47090 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				950FE67C1CCF1F2800782897 /* GLKit.framework in Frameworks */,
+				9567062F1CC587D30080F3EC /* IOKit.framework in Frameworks */,
+				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+				05AD77780BC2F2C800656B4D /* OpenGL.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				950FE6701CCD068700782897 /* ReachOutputState.h */,
+				950FE6711CCD068700782897 /* ReachOutputState.m */,
+				950FE66D1CCC51F400782897 /* FileOutputState.h */,
+				950FE66E1CCC51F400782897 /* FileOutputState.m */,
+				95FB5E541CCB06F200AB89E6 /* ArmState.h */,
+				95FB5E551CCB06F200AB89E6 /* ArmState.m */,
+				05AD777C0BC2F2E700656B4D /* MainController.h */,
+				05AD777D0BC2F2E700656B4D /* MainController.m */,
+				058474740C160A3D00E09F37 /* MouseIgnoringBox.h */,
+				058474750C160A3D00E09F37 /* MouseIgnoringBox.m */,
+				05AD777E0BC2F2E700656B4D /* MyOpenGLView.h */,
+				05AD777F0BC2F2E700656B4D /* MyOpenGLView.m */,
+				05AD77800BC2F2E700656B4D /* Scene.h */,
+				05AD77810BC2F2E700656B4D /* Scene.m */,
+				9567066F1CC732510080F3EC /* PositionTrace.h */,
+				956706701CC732510080F3EC /* PositionTrace.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
+				05AD77770BC2F2C800656B4D /* OpenGL.framework */,
+				05E363560BC320780089D3DE /* QuartzCore.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
+				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D1107320486CEB800E47090 /* MotionTrackingProject.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* LayerBackedOpenGLView */ = {
+			isa = PBXGroup;
+			children = (
+				9567063C1CC5D4070080F3EC /* Dialog Windows */,
+				956706361CC589F50080F3EC /* From ORSSerialPort */,
+				080E96DDFE201D6D7F000001 /* Classes */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = LayerBackedOpenGLView;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				32CA4F630368D1EE00C91783 /* MotionTrackingProject_Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				950FE6691CCC1D5900782897 /* Images.xcassets */,
+				950FE6731CCD2EE900782897 /* IMG_target1.png */,
+				950FE6741CCD2EE900782897 /* IMG_target2.png */,
+				950FE6751CCD2EE900782897 /* IMG_target3.png */,
+				950FE6761CCD2EE900782897 /* IMG_target4.png */,
+				AFBA6399170A3315004A98A0 /* MainMenu.xib */,
+				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
+				8D1107310486CEB800E47090 /* Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				950FE67B1CCF1F2800782897 /* GLKit.framework */,
+				9567062E1CC587D30080F3EC /* IOKit.framework */,
+				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
+				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		956706361CC589F50080F3EC /* From ORSSerialPort */ = {
+			isa = PBXGroup;
+			children = (
+				9567062B1CC587990080F3EC /* ORSSerialPortManager.h */,
+				9567062C1CC587990080F3EC /* ORSSerialPortManager.m */,
+				956706331CC5881A0080F3EC /* ORSSerialBuffer.h */,
+				956706341CC5881A0080F3EC /* ORSSerialBuffer.m */,
+				956706301CC588020080F3EC /* ORSSerialPort.h */,
+				956706311CC588020080F3EC /* ORSSerialPort.m */,
+			);
+			name = "From ORSSerialPort";
+			sourceTree = "<group>";
+		};
+		9567063C1CC5D4070080F3EC /* Dialog Windows */ = {
+			isa = PBXGroup;
+			children = (
+				956706371CC594040080F3EC /* ArduinoConnectWindowController.h */,
+				956706381CC594040080F3EC /* ArduinoConnectWindowController.m */,
+				956706391CC594040080F3EC /* ArduinoConnectWindowController.xib */,
+				9567063D1CC5D6740080F3EC /* CalibrateWindowController.h */,
+				9567063E1CC5D6740080F3EC /* CalibrateWindowController.m */,
+				9567063F1CC5D6740080F3EC /* CalibrateWindowController.xib */,
+				956706421CC5D9700080F3EC /* OutputDataWindowController.h */,
+				956706431CC5D9700080F3EC /* OutputDataWindowController.m */,
+				956706441CC5D9700080F3EC /* OutputDataWindowController.xib */,
+				956706471CC5DB0D0080F3EC /* TrackPositionsWindowController.h */,
+				956706481CC5DB0D0080F3EC /* TrackPositionsWindowController.m */,
+				956706491CC5DB0D0080F3EC /* TrackPositionsWindowController.xib */,
+				9567064C1CC5DD410080F3EC /* ReachTestWindowController.h */,
+				9567064D1CC5DD410080F3EC /* ReachTestWindowController.m */,
+				9567064E1CC5DD410080F3EC /* ReachTestWindowController.xib */,
+				9567066A1CC710FA0080F3EC /* VisualizationOptionsWindowController.h */,
+				9567066B1CC710FA0080F3EC /* VisualizationOptionsWindowController.m */,
+				9567066C1CC710FA0080F3EC /* VisualizationOptionsWindowController.xib */,
+			);
+			name = "Dialog Windows";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8D1107260486CEB800E47090 /* MotionTrackingProject */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "MotionTrackingProject" */;
+			buildPhases = (
+				8D1107290486CEB800E47090 /* Resources */,
+				8D11072C0486CEB800E47090 /* Sources */,
+				8D11072E0486CEB800E47090 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MotionTrackingProject;
+			productInstallPath = "$(HOME)/Applications";
+			productName = LayerBackedOpenGLView;
+			productReference = 8D1107320486CEB800E47090 /* MotionTrackingProject.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+			};
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "MotionTrackingProject" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				en,
+				English,
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA /* LayerBackedOpenGLView */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8D1107260486CEB800E47090 /* MotionTrackingProject */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8D1107290486CEB800E47090 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
+				956706411CC5D6740080F3EC /* CalibrateWindowController.xib in Resources */,
+				956706461CC5D9700080F3EC /* OutputDataWindowController.xib in Resources */,
+				950FE67A1CCD2EE900782897 /* IMG_target4.png in Resources */,
+				950FE6791CCD2EE900782897 /* IMG_target3.png in Resources */,
+				9567063B1CC594040080F3EC /* ArduinoConnectWindowController.xib in Resources */,
+				950FE66A1CCC1D5900782897 /* Images.xcassets in Resources */,
+				956706501CC5DD410080F3EC /* ReachTestWindowController.xib in Resources */,
+				9567066E1CC710FA0080F3EC /* VisualizationOptionsWindowController.xib in Resources */,
+				950FE6781CCD2EE900782897 /* IMG_target2.png in Resources */,
+				9567064B1CC5DB0D0080F3EC /* TrackPositionsWindowController.xib in Resources */,
+				AFBA639B170A3315004A98A0 /* MainMenu.xib in Resources */,
+				950FE6771CCD2EE900782897 /* IMG_target1.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8D11072C0486CEB800E47090 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9567066D1CC710FA0080F3EC /* VisualizationOptionsWindowController.m in Sources */,
+				8D11072D0486CEB800E47090 /* main.m in Sources */,
+				956706401CC5D6740080F3EC /* CalibrateWindowController.m in Sources */,
+				956706451CC5D9700080F3EC /* OutputDataWindowController.m in Sources */,
+				05AD77840BC2F2E700656B4D /* MainController.m in Sources */,
+				9567063A1CC594040080F3EC /* ArduinoConnectWindowController.m in Sources */,
+				95FB5E561CCB06F200AB89E6 /* ArmState.m in Sources */,
+				950FE66F1CCC51F400782897 /* FileOutputState.m in Sources */,
+				9567064F1CC5DD410080F3EC /* ReachTestWindowController.m in Sources */,
+				05AD77850BC2F2E700656B4D /* MyOpenGLView.m in Sources */,
+				950FE6721CCD068700782897 /* ReachOutputState.m in Sources */,
+				956706321CC588020080F3EC /* ORSSerialPort.m in Sources */,
+				05AD77860BC2F2E700656B4D /* Scene.m in Sources */,
+				058474760C160A3D00E09F37 /* MouseIgnoringBox.m in Sources */,
+				9567064A1CC5DB0D0080F3EC /* TrackPositionsWindowController.m in Sources */,
+				9567062D1CC587990080F3EC /* ORSSerialPortManager.m in Sources */,
+				956706711CC732510080F3EC /* PositionTrace.m in Sources */,
+				956706351CC5881A0080F3EC /* ORSSerialBuffer.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				089C165DFE840E0CC02AAC07 /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		AFBA6399170A3315004A98A0 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AFBA639A170A3315004A98A0 /* English */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C01FCF4B08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = MotionTrackingProject_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = MotionTrackingProject;
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = YES;
+			};
+			name = Debug;
+		};
+		C01FCF4C08A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = MotionTrackingProject_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = MotionTrackingProject;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "MotionTrackingProject" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4B08A954540054247B /* Debug */,
+				C01FCF4C08A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "MotionTrackingProject" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}
