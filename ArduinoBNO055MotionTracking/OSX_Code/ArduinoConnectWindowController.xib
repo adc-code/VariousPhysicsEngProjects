@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment version="101100" identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10116"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="ArduinoConnectWindowController">
+            <connections>
+                <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window title="Arduino Connect" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="196" y="240" width="349" height="176"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
+            <view key="contentView" id="se5-gp-TjO">
+                <rect key="frame" x="0.0" y="0.0" width="349" height="176"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="Kky-k2-Irl">
+                        <rect key="frame" x="18" y="139" width="71" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Serial Port:" id="Tlp-Yg-OzX">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="Z6T-6L-XPr">
+                        <rect key="frame" x="18" y="106" width="70" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Baud Rate:" id="eYb-ua-E7i">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="meC-Tf-IBl">
+                        <rect key="frame" x="20" y="20" width="309" height="68"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Note: Certain serial communication parameters are being assumed including data bits (8), parity (none), and stop bits (1)" drawsBackground="YES" id="Lyx-Pb-ecX">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="alternateSelectedControlTextColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <popUpButton verticalHuggingPriority="750" id="rbD-zC-GgL">
+                        <rect key="frame" x="93" y="133" width="170" height="26"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="o1m-M9-uia" id="LxQ-UO-zhk">
+                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="menu"/>
+                            <menu key="menu" id="xvJ-on-5Dg">
+                                <items>
+                                    <menuItem title="Item 1" state="on" id="o1m-M9-uia"/>
+                                    <menuItem title="Item 2" id="GSg-h6-djP"/>
+                                    <menuItem title="Item 3" id="nAz-mj-Vg3"/>
+                                </items>
+                            </menu>
+                        </popUpButtonCell>
+                        <connections>
+                            <binding destination="1jT-rg-mu6" name="selectedObject" keyPath="serialPort" previousBinding="s0o-WU-ca3" id="dyf-fz-U7Z"/>
+                            <binding destination="1jT-rg-mu6" name="content" keyPath="serialPortManager.availablePorts" id="nb8-jY-eYy"/>
+                            <binding destination="1jT-rg-mu6" name="contentValues" keyPath="serialPortManager.availablePorts.name" previousBinding="nb8-jY-eYy" id="s0o-WU-ca3"/>
+                        </connections>
+                    </popUpButton>
+                    <popUpButton verticalHuggingPriority="750" id="Zld-zM-vWB">
+                        <rect key="frame" x="93" y="100" width="170" height="26"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="8GH-SS-WGu" id="MUm-xn-aUw">
+                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="menu"/>
+                            <menu key="menu" id="Age-QC-yMT">
+                                <items>
+                                    <menuItem title="Item 1" state="on" id="8GH-SS-WGu"/>
+                                    <menuItem title="Item 2" id="vBa-2l-VmV"/>
+                                    <menuItem title="Item 3" id="iGk-85-ddp"/>
+                                </items>
+                            </menu>
+                        </popUpButtonCell>
+                        <connections>
+                            <binding destination="1jT-rg-mu6" name="contentValues" keyPath="availableBaudRates" id="gnc-wk-u5i"/>
+                            <binding destination="1jT-rg-mu6" name="selectedObject" keyPath="serialPort.baudRate" previousBinding="gnc-wk-u5i" id="htp-i3-ZMC"/>
+                        </connections>
+                    </popUpButton>
+                    <button verticalHuggingPriority="750" id="ma7-Dn-FF9">
+                        <rect key="frame" x="262" y="130" width="73" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Open" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Nmg-5k-QSv">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="OpenCloseSerialPort:" target="1jT-rg-mu6" id="cYe-9Y-3ev"/>
+                            <binding destination="1jT-rg-mu6" name="enabled" keyPath="serialPort" id="wlh-xI-Qcm">
+                                <dictionary key="options">
+                                    <string key="NSValueTransformerName">NSIsNotNil</string>
+                                </dictionary>
+                            </binding>
+                        </connections>
+                    </button>
+                </subviews>
+            </view>
+            <connections>
+                <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
+            </connections>
+            <point key="canvasLocation" x="104.5" y="172"/>
+        </window>
+        <customObject id="1jT-rg-mu6" customClass="MainController">
+            <connections>
+                <outlet property="OpenCloseButton" destination="ma7-Dn-FF9" id="lzA-Tn-79Y"/>
+            </connections>
+        </customObject>
+        <userDefaultsController representsSharedInstance="YES" id="Qnd-nI-RxY"/>
+    </objects>
+</document>
