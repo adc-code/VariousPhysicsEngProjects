@@ -1,0 +1,231 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title> Spring Pendulum Simulation </title>
+
+    <script src='SpringPendulum.js'></script>
+
+    <script type='text/javascript'>
+
+        // Add a wide left margin so that the contents seem centered
+        function CenterContents ()
+        {
+            var leftMargin = (window.innerWidth - 700) / 2;
+            if (leftMargin > 0)
+            {
+                var contents = document.getElementById ('contents');
+                contents.style.marginLeft = leftMargin + 'px';
+            }
+        }
+
+        // Also re-center the contents when the page was resized...
+        window.addEventListener ('resize', CenterContents);
+
+        //
+        // eventWindowLoaded: used to be sure that everything has been loaded first 
+        // 
+        window.addEventListener ('load', eventWindowLoaded, false);	
+        function eventWindowLoaded ()
+        {
+            CenterContents ();
+            canvasApp ();
+        }
+
+    </script>
+
+    <style>
+
+        .button
+        {
+            width:            178px;
+            padding:          4px;
+            margin:           0px;
+            margin-right:     0px;
+            cursor:           pointer;
+            font-family:      Helvetica, sans-serif;
+            font-size:        12px;
+            text-align:       center;
+            border-radius:    5px;
+            border-width:     thin;
+            border-style:     solid;
+            border-color:     #000;
+            color:            #fff;
+        }
+
+        .enabledbutton
+        {
+            background-color: #005580;
+        }
+
+        .enabledbutton:hover
+        {
+            background-color: #0088cc;
+        }
+
+        .disabledbutton
+        {
+            background-color: #dddddd;
+            color:            #333333;
+            cursor:           default;
+        } 
+
+        .label
+        {
+            font-family:      Helvetica, sans-serif;
+            font-size:        12px;
+            padding-top:      3px;
+        }
+
+        .dataInput 
+        {
+            background-color: #ccc;
+            padding:          4px;
+            margin:           0px;
+            margin-right:     0px;
+            border-radius:    5px;
+            border-width:     thin;
+            border-style:     solid;
+            border-color:     #000;
+            height:           20px; 
+        }
+
+        #msgBox
+        {
+            font-family:      Helvetica, sans-serif;
+            font-size:        12px;
+            background-color: #ffcc99;
+            width:            178px;
+            padding:          4px;
+            margin:           2px;
+        }
+
+    </style>
+
+</head>
+
+<body> 
+
+    <div id='contents'>
+
+        <div id='controls' style='float:left;margin-right:7px'>
+
+            <div id='StartBtn' class='button enabledbutton'>Start</div>
+
+            <div style='height:5px'> </div>
+
+            <div class='dataInput' style='height: 40px'>
+                <div>
+                    <div class='label' style='float:left'>Initial Speed (&theta;&#775;): </div>
+                    <input id='initSpeedTextBox' style='width:40px;float:right;text-align: center;' value='0' readonly/> 
+                </div>
+                <input id='initSpeedSlider' style='width:170px' type='range' min='-0.25' max='0.25' step='0.01' value='0'/>
+            </div>
+
+            <div style='height:5px'> </div>
+
+            <div class='dataInput' style='height: 40px'>
+                <div>
+                    <div class='label' style='float:left'>Initial Angle (&theta;<sub>0</sub>): </div>
+                    <input id='initAngleTextBox' style='width:40px;float:right;text-align: center;' value='30' readonly/> 
+                </div>
+                <input id='initAngleSlider' style='width:170px' type='range' min='-75' max='75' step='0.1' value='30'/>
+            </div>
+
+            <div style='height:5px'> </div>
+
+            <div class='dataInput' style='height: 40px'>
+                <div>
+                    <div class='label' style='float:left'>Length (&ell;): </div>
+                    <input id='lengthTextBox' style='width:40px;float:right;text-align: center;' value='50' readonly/> 
+                </div>
+                <input id='lengthSlider' style='width:170px' type='range' min='30' max='90' step='0.1' value='50'/>
+            </div>
+
+            <div style='height:5px'> </div>
+
+            <div class='dataInput' style='height: 40px'>
+                <div>
+                    <div class='label' style='float:left'>Mass (<i>m</i>): </div>
+                    <input id='massTextBox' style='width:40px;float:right;text-align: center;' value='2' readonly/> 
+                </div>
+                <input id='massSlider' style='width:170px' type='range' min='1' max='10' step='0.1' value='2'/>
+            </div>
+
+            <div style='height:5px'> </div>
+
+            <div class='dataInput' style='height: 40px'>
+                <div>
+                    <div class='label' style='float:left'>Spring Constant (<i>k</i>): </div>
+                    <input id='springConstTextBox' style='width:40px;float:right;text-align: center;' value='10' readonly/> 
+                </div>
+                <input id='springConstSlider' style='width:170px' type='range' min='1' max='20' step='0.1' value='10'/>
+            </div>
+
+            <div style='height:5px'> </div>
+
+            <div class='dataInput' style='height: 40px'>
+                <div>
+                    <div class='label' style='float:left'>Pendulum Damping (<i>b</i>): </div>
+                    <input id='damping1TextBox' style='width:40px;float:right;text-align: center;' value='0.03' readonly/> 
+                </div>
+                <input id='damping1Slider' style='width:170px' type='range' min='0' max='0.2' step='0.01' value='0.03'/>
+            </div>
+
+            <div style='height:5px'> </div>
+
+            <div class='dataInput' style='height: 40px'>
+                <div>
+                    <div class='label' style='float:left'>Spring Damping (<i>c</i>): </div>
+                    <input id='damping2TextBox' style='width:40px;float:right;text-align: center;' value='0.02' readonly/> 
+                </div>
+                <input id='damping2Slider' style='width:170px' type='range' min='0' max='0.15' step='0.01' value='0.02'/>
+            </div>
+
+            <div style='height:5px'> </div>
+
+            <div class='dataInput' style='height: 40px'>
+                <div>
+                    <div class='label' style='float:left'>Gravity Constant (<i>g</i>): </div>
+                    <input id='gravityTextBox' style='width:40px;float:right;text-align: center;' value='9.8' readonly/> 
+                </div>
+                <input id='gravitySlider' style='width:170px' type='range' min='0.1' max='50' step='0.1' value='9.8'/>
+            </div>
+
+            <div style='height:5px'> </div>
+
+            <div class='dataInput' style='height: 25px'>
+                <div class='label' style='float: left; margin-top:3px'>Trail Length: </div>                
+                <select id='trailLengthList' name='trailLengthList' style='width:65px;float:right; margin-top:3px'>
+                    <option value='-1' selected>Off</option>
+                    <option value='25'>25</option>
+                    <option value='1000'>1000</option>
+                    <option value='50000'>50000</option>
+                </select>
+            </div>
+
+            <div style='height:5px'> </div>
+
+            <div id='ResetBtn' class='button enabledbutton'>Reset to Defaults</div>
+
+        </div>    
+
+        <div style='float: left; position:relative; display:inline-block; padding-top: 15px'>
+
+            <canvas id='canvasSimArea' width='500' height='500'>
+                Your browser does not support the HTML 5 Canvas. 
+            </canvas>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+
+
+
+
