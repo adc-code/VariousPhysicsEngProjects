@@ -65,7 +65,7 @@ function canvasApp ()
         var springPos = iStateVec[2];
         var theta     = iStateVec[3];
 
-        var spring_accel = 0.05 * ( (_dLength + springPos) * omega * omega - _dKConst / _dMass * springPos + _dGravityConst * Math.cos (theta));
+        var spring_accel = SPRING_SCALING * ( (_dLength + springPos) * omega * omega - _dKConst / _dMass * springPos + _dGravityConst * Math.cos (theta));
         var omega_dot = -2 / (_dLength + springPos) * omega * springVel - _dGravityConst / (_dLength + springPos) * Math.sin (theta);
 
         spring_accel += -1 * _dSpringDampingConst * springVel;        
@@ -131,13 +131,6 @@ function canvasApp ()
         _dCurrXPos = (_dLength + _dSpringLength) * Math.sin (_dTheta);
         _dCurrYPos = (_dLength + _dSpringLength) * Math.cos (_dTheta);
     }
-
-
-    /*function computeCurrentPositon ()
-    {
-        _dCurrXPos = (_dLength + _dSpringLength) * Math.sin (_dTheta);
-        _dCurrYPos = (_dLength + _dSpringLength) * Math.cos (_dTheta);
-    }*/
 
 
     //
@@ -540,6 +533,7 @@ function canvasApp ()
     const SIM_STATE_PLAY             = 2;
     const BALL_RADIUS                = 5;
     const ZERO_TOLERANCE             = 0.0001;
+    const SPRING_SCALING             = 0.05;
 
     var _dTheta                      = DEFAULT_INITANGLE;
     var _dOmega                      = DEFAULT_INITSPEED;
