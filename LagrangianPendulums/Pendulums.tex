@@ -160,7 +160,7 @@ k_4 &= \dot{\theta} (\theta_\mathsf{curr} + hk_3, u_\mathsf{curr} + 0.5 hk_3)   
 \end{align*}
 
 
-\section{Dampled Simple Pendulum}
+\section{Damped Simple Pendulum}
 
 The previous Lagrangian formula was missing any external forces, or it specifically assumed that they were zero.  If any
 external forces are considered we get:
@@ -174,12 +174,6 @@ then:
 F^\mathsf{ext} \cdot \frac{\partial r}{\partial q} = - \frac{\partial F}{\partial \dot{q}}
 \]
 So with the force we have:
-\[
-\frac{d}{dt}\left( \frac{\partial\mathcal{L}}{\partial \dot{q}} \right) -
-\frac{\partial \mathcal{L}}{\partial q} + \frac{\partial F}{\partial \dot{q}} = 0
-\]
-
-the solution becaomes:
 \[
 \frac{d}{dt}\left( \frac{\partial\mathcal{L}}{\partial \dot{q}} \right) -
 \frac{\partial \mathcal{L}}{\partial q} + \frac{\partial F}{\partial \dot{q}} = 0
@@ -347,7 +341,7 @@ Therefore, the equations of motion (or governing equations) are:
 
 Note that if $m_2 = 0$, $\ell_2 = 0$, and $\theta_1 = \theta_2$, then the equations simplify to a simple pendulum.
 
-\subsection{Solving Numerically with the Runge Kutta technique}
+\subsection{Solving Numerically for the Runge Kutta technique}
 
 To be able to solve numerically, the equations of motion need to be rewritten in the form:
 \[
@@ -389,7 +383,7 @@ Rewrite the equations using some matrices:
 
 Now we have something in the form:
 \[
-[m] \ddot{\vec{\theta}} = \vec{F}
+[M] \ddot{\vec{\theta}} = \vec{F}
 \qquad \text{or} \qquad
 \left[
 \begin{array}{cc}
@@ -420,7 +414,7 @@ So to find $\ddot{\theta}_1$\ and $\ddot{\theta}_2$, we just have to just take t
 \end{array}
 \right]
 =
-[m]^{-1} 
+[M]^{-1} 
 \left[
 \begin{array}{c}
 F_1 \\
@@ -430,7 +424,7 @@ F_2
 \qquad
 \text{Where:}
 \quad
-[m]^{-1} = 
+[M]^{-1} = 
 \frac{1}{m_{11}m_{22} - m_{12}m_{21}}
 \left[
 \begin{array}{cc}
@@ -538,44 +532,6 @@ The final equations of motion are:
 \ddot{x} &= (\ell_0 + x) \dot{\theta}^2 + g \cos \theta - \frac{k}{m}x
 \end{align*}
 
-
-
-
-The \emph{potential energy} involves two components: gravity and the spring, so it becomes:
-\begin{align*}
-V = mgh + \frac{1}{2} kx^2 = - mg \ell \cos \theta + \frac{1}{2} k \left( \ell - \ell_0 \right)^2 \\
-\end{align*}
-
-The \emph{Lagrangian} now becomes:
-\begin{align*}
-\mathcal{L} &= T - V \\
-  &= \frac{1}{2}m \left( \ell^2 \dot{\theta}^2 + \dot{\ell}^2 \right) + mg \ell \cos \theta - \frac{1}{2} k \left( \ell - \ell_0 \right)^2
-\end{align*}
-
-To find the equations of motion the Lagrangian needs to be solved twice:
-\begin{align*}
-\frac{\partial \mathcal{L}}{\partial \dot{\theta}} &= m \ell^2 \dot{\theta} \\
-\frac{d}{dt} \left( \frac{\partial \mathcal{L}}{\partial \dot{\theta}} \right) &= m \ell^2 \ddot{\theta} + 2 m \ell \dot{\theta} \dot{\ell} \\
-\frac{\partial \mathcal{L}}{\partial \theta} &= -mg \ell \sin \theta \\
-\frac{d}{dt} \left( \frac{\partial \mathcal{L}}{\partial \dot{\theta}} \right) - \frac{\partial \mathcal{L}}{\partial \theta} &=
- m \ell^2 \ddot{\theta} + 2 m \ell \dot{\theta} \dot{\ell} + mg \ell \sin \theta = 0 \\
-&= \ddot{\theta} + \frac{2}{\ell}\dot{\theta} \dot{\ell} + \frac{g}{\ell} \sin \theta = 0 
-\end{align*}
-
-\begin{align*}
-\frac{\partial \mathcal{L}}{\partial \dot{\ell}} &= m \dot{\ell} \\ 
-\frac{d}{dt} \left( \frac{\partial \mathcal{L}}{\partial \dot{\ell}} \right) &= m \ddot{\ell} \\
-\frac{\partial \mathcal{L}}{\partial \ell} &= m \ell \theta \dot{\theta}^2 + mg\cos\theta - k \left( \ell - \ell_0 \right) \\
-\frac{d}{dt} \left( \frac{\partial \mathcal{L}}{\partial \dot{\theta}} \right) - \frac{\partial \mathcal{L}}{\partial \theta} &= 
-  m \ddot{\ell} - m \ell \theta \dot{\theta}^2 - mg\cos\theta + k \left( \ell - \ell_0 \right) = 0 \\
-&= \ddot{\ell} - \ell \theta \dot{\theta}^2 - g\cos\theta + \frac{k}{m} \left( \ell - \ell_0 \right) = 0 
-\end{align*}
-
-Now solving for $\ddot{\ell}$ and $\ddot{\theta}$ with the equations of motion:
-\begin{align*}
-\ddot{\theta} &= - \frac{2}{\ell}\dot{\theta} \dot{\ell} - \frac{g}{\ell} \sin \theta \\
-\ddot{\ell}   &= \ell \theta \dot{\theta}^2 + g\cos\theta - \frac{k}{m} \left( \ell - \ell_0 \right) \\
-\end{align*}
 
 
 \subsection{Damping}
