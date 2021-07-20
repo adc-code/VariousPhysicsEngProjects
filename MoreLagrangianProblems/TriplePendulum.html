@@ -1,0 +1,325 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title> Triple Pendulum Simulation </title>
+
+    <script src='TriplePendulum.js'></script>
+    <script src='math.js'></script>
+
+    <script type='text/javascript'>
+
+        // Add a wide left margin so that the contents seem centered
+        function CenterContents ()
+        {
+            var leftMargin = (window.innerWidth - 920) / 2;
+            if (leftMargin > 0)
+            {
+                var contents = document.getElementById ('contents');
+                contents.style.marginLeft = leftMargin + 'px';
+            }
+        }
+
+        // Also re-center the contents when the page was resized...
+        window.addEventListener ('resize', CenterContents);
+
+        //
+        // eventWindowLoaded: used to be sure that everything has been loaded first 
+        // 
+        window.addEventListener ('load', eventWindowLoaded, false);	
+        function eventWindowLoaded ()
+        {
+            CenterContents ();
+            canvasApp ();
+        }
+
+    </script>
+
+    <style>
+        .button
+        {
+            width:            128px;
+            padding:          4px;
+            margin:           2px;
+            margin-right:     0px;
+            cursor:           pointer;
+            font-family:      Helvetica, sans-serif;
+            font-size:        12px;
+            text-align:       center;
+            border-radius:    5px;
+            border-width:     thin;
+            border-style:     solid;
+            border-color:     #000;
+            color:            #fff;
+        }
+
+        .enabledbutton
+        {
+            background-color: #005580;
+        }
+
+        .enabledbutton:hover
+        {
+            background-color: #0088cc;
+        }
+
+        .disabledbutton
+        {
+            background-color: #dddddd;
+            color:            #333333;
+            cursor:           default;
+        } 
+
+        .label
+        {
+            font-family:      Helvetica, sans-serif;
+            font-size:        10px;
+            padding-top:      3px;
+        }
+
+        .dataInput 
+        {
+            background-color: #ccc;
+            padding:          4px;
+            margin:           0px;
+            margin-right:     0px;
+            border-radius:    5px;
+            border-width:     thin;
+            border-style:     solid;
+            border-color:     #000;
+            height: 20px; 
+        }
+
+        #msgBox
+        {
+            font-family:      Helvetica, sans-serif;
+            font-size:        12px;
+            background-color: #ffcc99;
+            width:            178px;
+            padding:          4px;
+            margin:           2px;
+        }
+
+    </style>
+
+</head>
+
+<body> 
+
+    <div id='contents'>
+
+        <div id='controls' style='float:left;margin-right:7px'>
+
+            <div style='height:5px'> </div>
+
+            <div id='column1' style='float:left;margin-left:7px'>
+
+                <div id='StartBtn' class='button enabledbutton'>Start</div>
+
+                <div style='height:10px'> </div>
+
+                <div class='dataInput' style='height: 40px'>
+                    <div>
+                        <div class='label' style='float:left'>Initial Speed 1, &theta;&#775;<sub>1</sub>: </div>
+                        <output id='initSpeed1Output' class='label' style='width:25px;float:right;text-align: center'>0</output> 
+                    </div>
+                    <input id='initSpeed1Slider' style='width:120px' type='range' min='-0.25' max='0.25' step='0.01' value='0'/>
+                </div>
+
+                <div style='height:5px'> </div>
+
+                <div class='dataInput' style='height: 40px'>
+                    <div>
+                        <div class='label' style='float:left'>Initial Angle 1, &theta;<sub>1</sub>: </div>
+                        <output id='initAngle1Output' class='label' style='width:25px;float:right;text-align: center;'>15</output> 
+                    </div>
+                    <input id='initAngle1Slider' style='width:120px' type='range' min='-75' max='75' step='0.1' value='15'/>
+                </div>
+
+                <div style='height:5px'> </div>
+
+                <div class='dataInput' style='height: 40px'>
+                    <div>
+                        <div class='label' style='float:left'>Mass 1, <i>m</i><sub>1</sub>: </div>
+                        <output id='mass1Output' class='label' style='width:25px;float:right;text-align: center;'>1</output> 
+                    </div>
+                    <input id='mass1Slider' style='width:120px' type='range' min='1' max='10' step='0.1' value='1'/>
+                </div>
+
+                <div style='height:5px'> </div>
+
+                <div class='dataInput' style='height: 40px'>
+                    <div>
+                        <div class='label' style='float:left'>Length 1, &ell;<sub>1</sub>: </div>
+                        <output id='length1Output' class='label' style='width:25px;float:right;text-align: center;'>30</output> 
+                    </div>
+                    <input id='length1Slider' style='width:120px' type='range' min='5' max='50' step='0.1' value='30'/>
+                </div>
+
+                <div style='height:5px'> </div>
+
+                <div class='dataInput' style='height: 40px'>
+                    <div>
+                        <div class='label' style='float:left'>Damping, <i>b</i>: </div>
+                        <output id='dampingOutput' class='label' style='width:25px;float:right;text-align: center;'>0.05</output>
+                    </div>
+                    <input id='dampingSlider' style='width:120px' type='range' min='0' max='1' step='0.01' value='0.05'/>
+                </div>
+
+                <div style='height:15px'> </div>
+
+                <div class='dataInput' style='height: 25px'>
+                    <input id='trailCB' type='checkbox' value='0.03'/>
+                    <label class='label' for='trailCB'>Hide/Show Trail</label>
+                </div>
+
+            </div>
+
+            <div id='column2' style='float:left;margin-left:7px'>
+
+                <div style='height:28px;width:128px'> </div>
+
+                <div style='height:10px'> </div> 
+
+                <div class='dataInput' style='height: 40px'>
+                    <div>
+                        <div class='label' style='float:left'>Initial Speed 2, &theta;&#775;<sub>2</sub>: </div>
+                        <output id='initSpeed2Output' class='label' style='width:25px;float:right;text-align: center;'>0</output> 
+                    </div>
+                    <input id='initSpeed2Slider' style='width:120px' type='range' min='-0.25' max='0.25' step='0.01' value='0'/>
+                </div>
+
+                <div style='height:5px'> </div> 
+
+                <div class='dataInput' style='height: 40px'>
+                    <div>
+                        <div class='label' style='float:left'>Initial Angle 2, &theta;<sub>2</sub>: </div>
+                        <output id='initAngle2Output' class='label' style='width:25px;float:right;text-align: center;'>10</output>
+                    </div>
+                    <input id='initAngle2Slider' style='width:120px' type='range' min='-75' max='75' step='0.1' value='10'/>
+                </div>
+
+                <div style='height:5px'> </div> 
+
+                <div class='dataInput' style='height: 40px'>
+                    <div>
+                        <div class='label' style='float:left'>Mass 2, <i>m</i><sub>2</sub>: </div>
+                        <output id='mass2Output' class='label' style='width:25px;float:right;text-align: center;'>2</output>
+                    </div>
+                    <input id='mass2Slider' style='width:120px' type='range' min='1' max='10' step='0.1' value='2'/>
+                </div>
+
+                <div style='height:5px'> </div> 
+
+                <div class='dataInput' style='height: 40px'>
+                    <div>
+                        <div class='label' style='float:left'>Length 2, &ell;<sub>2</sub>: </div>
+                        <output id='length2Output' class='label' style='width:25px;float:right;text-align: center;'>30</output>
+                    </div>
+                    <input id='length2Slider' style='width:120px' type='range' min='5' max='50' step='0.1' value='30'/>
+                </div>
+
+                <div style='height:5px'> </div>
+
+                <div class='dataInput' style='height: 40px'>
+                    <div>
+                        <div class='label' style='float:left'>Gravity Constant, <i>g</i>: </div>
+                        <output id='gravityOutput' class='label' style='width:25px;float:right;text-align: center;'>9.8</output>
+                    </div>
+                    <input id='gravitySlider' style='width:120px' type='range' min='1' max='50' step='0.1' value='9.8'/>
+                </div>
+
+                <div style='height:15px'> </div>
+
+                <div class='dataInput' style='height: 25px'>
+                    <div class='label' style='float: left; margin-top:3px'>Trail Length: </div>                
+                    <select id='trailLengthList' name='trailLengthList' style='width:65px;float:right; margin-top:3px'>
+                        <option value='25'>25</option>
+                        <option value='100' selected>100</option>
+                        <option value='1000'>1000</option>
+                        <option value='10000'>10000</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div id='column3' style='float:left;margin-left:7px'>
+
+                <div id='ResetBtn' class='button enabledbutton'>Reset to Defaults</div>
+
+                <div style='height:10px'> </div> 
+
+                <div class='dataInput' style='height: 40px'>
+                    <div>
+                        <div class='label' style='float:left'>Initial Speed 3, &theta;&#775;<sub>3</sub>: </div>
+                        <output id='initSpeed3Output' class='label' style='width:25px;float:right;text-align: center;'>0</output>
+                    </div>
+                    <input id='initSpeed3Slider' style='width:120px' type='range' min='-0.25' max='0.25' step='0.01' value='0'/>
+                </div>
+
+                <div style='height:5px'> </div> 
+
+                <div class='dataInput' style='height: 40px'>
+                    <div>
+                        <div class='label' style='float:left'>Initial Angle 3, &theta;<sub>3</sub>: </div>
+                        <output id='initAngle3Output' class='label' style='width:25px;float:right;text-align: center;'>10</output>
+                    </div>
+                    <input id='initAngle3Slider' style='width:120px' type='range' min='-75' max='75' step='0.1' value='10'/>
+                </div>
+
+                <div style='height:5px'> </div> 
+
+                <div class='dataInput' style='height: 40px'>
+                    <div>
+                        <div class='label' style='float:left'>Mass 3, <i>m</i><sub>3</sub>: </div>
+                        <output id='mass3Output' class='label' style='width:25px;float:right;text-align: center;'>2</output> 
+                    </div>
+                    <input id='mass3Slider' style='width:120px' type='range' min='1' max='10' step='0.1' value='2'/>
+                </div>
+
+                <div style='height:5px'> </div> 
+
+                <div class='dataInput' style='height: 40px'>
+                    <div>
+                        <div class='label' style='float:left'>Length 3, &ell;<sub>3</sub>: </div>
+                        <output id='length3Output' class='label' style='width:25px;float:right;text-align: center;'>30</output>
+                    </div>
+                    <input id='length3Slider' style='width:120px' type='range' min='5' max='50' step='0.1' value='30'/>
+                </div>
+
+                <div style='height:5px'> </div>
+
+                <div style='height:50px'> </div>
+                <div style='height:15px'> </div>
+
+                <div class='dataInput' style='height: 25px'>
+                    <div class='label' style='float: left; margin-top:3px'>Trail type: </div>                
+                    <select id='trailTypeList' name='trailTypeList' style='width:65px;float:right; margin-top:3px'>
+                        <option value='1' selected>Only at end</option>
+                        <option value='2'>Each mass</option>
+                    </select>
+                </div>
+
+            </div>
+
+        </div>    
+
+        <div style='float: left; position:relative; display:inline-block;'>
+
+            <canvas id='canvasSimArea' width='500' height='500'>
+                Your browser does not support the HTML 5 Canvas. 
+            </canvas>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+
+
+
+
