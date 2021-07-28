@@ -1,0 +1,218 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title> Cart Spring Pendulum Simulation </title>
+
+    <script src='CartSpringPendulum.js'></script>
+    <script src='math.js'></script>
+
+    <script type='text/javascript'>
+
+        // Add a wide left margin so that the contents seem centered
+        function CenterContents ()
+        {
+            var leftMargin = (window.innerWidth - 700) / 2;
+            if (leftMargin > 0)
+            {
+                var contents = document.getElementById ('contents');
+                contents.style.marginLeft = leftMargin + 'px';
+            }
+        }
+
+        // Also re-center the contents when the page was resized...
+        window.addEventListener ('resize', CenterContents);
+
+        //
+        // eventWindowLoaded: used to be sure that everything has been loaded first 
+        // 
+        window.addEventListener ('load', eventWindowLoaded, false);	
+        function eventWindowLoaded ()
+        {
+            CenterContents ();
+            canvasApp ();
+        }
+
+    </script>
+
+    <style>
+
+        .button
+        {
+            width:            178px;
+            padding:          4px;
+            margin:           0px;
+            margin-right:     0px;
+            cursor:           pointer;
+            font-family:      Helvetica, sans-serif;
+            font-size:        12px;
+            text-align:       center;
+            border-radius:    5px;
+            border-width:     thin;
+            border-style:     solid;
+            border-color:     #000;
+            color:            #fff;
+        }
+
+        .enabledbutton
+        {
+            background-color: #005580;
+        }
+
+        .enabledbutton:hover
+        {
+            background-color: #0088cc;
+        }
+
+        .disabledbutton
+        {
+            background-color: #dddddd;
+            color:            #333333;
+            cursor:           default;
+        } 
+
+        .label
+        {
+            font-family:      Helvetica, sans-serif;
+            font-size:        12px;
+            padding-top:      3px;
+        }
+
+        .dataInput 
+        {
+            background-color: #ccc;
+            padding:          4px;
+            margin:           0px;
+            margin-right:     0px;
+            border-radius:    5px;
+            border-width:     thin;
+            border-style:     solid;
+            border-color:     #000;
+            height:           20px; 
+        }
+
+        #msgBox
+        {
+            font-family:      Helvetica, sans-serif;
+            font-size:        12px;
+            background-color: #ffcc99;
+            width:            178px;
+            padding:          4px;
+            margin:           2px;
+        }
+
+    </style>
+
+</head>
+
+<body> 
+
+    <div id='contents'>
+
+        <div id='controls' style='float:left;margin-right:7px'>
+
+            <div id='StartBtn' class='button enabledbutton'>Start</div>
+
+            <div style='height:5px'> </div>
+
+            <!-- Spring constant -->
+            <div class='dataInput' style='height: 40px'>
+                <div>
+                    <div class='label' style='float:left'>Spring Constant (<i>k</i>): </div>
+                    <output id='springConstOutput' class='label' style='width:40px;float:right;text-align: center;'>5</output> 
+                </div>
+                <input id='springConstSlider' style='width:170px' type='range' min='1' max='20' step='0.1' value='5'/>
+            </div>
+
+            <div style='height:5px'> </div>
+
+            <!-- Cart Mass -->
+            <div class='dataInput' style='height: 40px'>
+                <div>
+                    <div class='label' style='float:left'>Cart Mass (<i>m<sub>1</sub></i>): </div>
+                    <output id='massCartOutput' class='label' style='width:40px;float:right;text-align: center;'>10</output> 
+                </div>
+                <input id='massCartSlider' style='width:170px' type='range' min='1' max='20' step='0.1' value='10'/>
+            </div>
+
+            <div style='height:5px'> </div>
+
+            <!-- Cart initial position -->
+            <div class='dataInput' style='height: 40px'>
+                <div>
+                    <div class='label' style='float:left'>Cart Initial Positon (x<sub>0</sub>): </div>
+                    <output id='cartInitPosOutput' class='label' style='width:40px;float:right;text-align: center;'>0</output> 
+                </div>
+                <input id='cartInitPosSlider' style='width:170px' type='range' min='-40' max='40' step='0.1' value='0'/>
+            </div>
+
+            <div style='height:5px'> </div>
+
+            <!-- Pendulum Length -->
+            <!-- Note that value is a percentage of the max -->
+            <div class='dataInput' style='height: 40px'>
+                <div>
+                    <div class='label' style='float:left'>Pendulum Length (&ell;): </div>
+                    <output id='pendLengthOutput' class='label' style='width:40px;float:right;text-align: center;'>50</output> 
+                </div>
+                <input id='pendLengthSlider' style='width:170px' type='range' min='30' max='90' step='0.1' value='50'/>
+            </div>
+
+            <div style='height:5px'> </div>
+
+            <!-- Pendulum Mass -->
+            <div class='dataInput' style='height: 40px'>
+                <div>
+                    <div class='label' style='float:left'>Pendulum Mass (<i>m<sub>2</sub></i>): </div>
+                    <output id='massPendOutput' class='label' style='width:40px;float:right;text-align: center;'>2</output>
+                </div>
+                <input id='massPendSlider' style='width:170px' type='range' min='1' max='10' step='0.1' value='2'/>
+            </div>
+
+            <div style='height:5px'> </div>
+
+            <!-- Initial Pendulum Angle -->
+            <div class='dataInput' style='height: 40px'>
+                <div>
+                    <div class='label' style='float:left'>Initial Angle (&theta;<sub>0</sub>): </div>
+                    <output id='initAngleOutput' class='label' style='width:40px;float:right;text-align: center;'>30</output>
+                </div>
+                <input id='initAngleSlider' style='width:170px' type='range' min='-75' max='75' step='0.1' value='30'/>
+            </div>
+
+            <div style='height:5px'> </div>
+
+            <!-- Gravity -->
+            <div class='dataInput' style='height: 40px'>
+                <div>
+                    <div class='label' style='float:left'>Gravity Constant (<i>g</i>): </div>
+                    <output id='gravityOutput' class='label' style='width:40px;float:right;text-align: center;'>9.8</output> 
+                </div>
+                <input id='gravitySlider' style='width:170px' type='range' min='0.1' max='50' step='0.1' value='9.8'/>
+            </div>
+
+            <div style='height:5px'> </div> 
+
+            <div id='ResetBtn' class='button enabledbutton'>Reset to Defaults</div>
+
+        </div>    
+
+        <div style='float: left; position:relative; display:inline-block; padding-top: 0px'>
+
+            <canvas id='canvasSimArea' width='500' height='500'>
+                Your browser does not support the HTML 5 Canvas. 
+            </canvas>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+
+
+
+
