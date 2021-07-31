@@ -1,0 +1,203 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title> Rotating Pendulum Simulation </title>
+
+    <style>
+
+        .button
+        {
+            width:            178px;
+            padding:          4px;
+            margin:           2px;
+            margin-right:     0px;
+            cursor:           pointer;
+            font-family:      Helvetica, sans-serif;
+            font-size:        12px;
+            text-align:       center;
+            border-radius:    5px;
+            border-width:     thin;
+            border-style:     solid;
+            border-color:     #000;
+            color:            #fff;
+        }
+
+        .enabledbutton
+        {
+            background-color: #005580;
+        }
+
+        .enabledbutton:hover
+        {
+            background-color: #0088cc;
+        }
+
+        .disabledbutton
+        {
+            background-color: #dddddd;
+            color:            #333333;
+            cursor:           default;
+        } 
+
+        .label
+        {
+            font-family:      Helvetica, sans-serif;
+            font-size:        12px;
+            padding-top:      3px;
+        }
+
+        .dataInput 
+        {
+            background-color: #ccc;
+            padding:          4px;
+            margin:           0px;
+            margin-right:     0px;
+            border-radius:    5px;
+            border-width:     thin;
+            border-style:     solid;
+            border-color:     #000;
+            height: 20px; 
+        }
+
+        #msgBox
+        {
+            font-family:      Helvetica, sans-serif;
+            font-size:        12px;
+            background-color: #ffcc99;
+            width:            178px;
+            padding:          4px;
+            margin:           2px;
+        }
+
+    </style>
+
+    <script src='RotatingPendulum.js'></script>
+
+    <script type='text/javascript'>
+
+        // Add a wide left margin so that the contents seem centered
+        function CenterContents ()
+        {
+            var leftMargin = (window.innerWidth - 700) / 2;
+            if (leftMargin > 0)
+            {
+                var contents = document.getElementById ('contents');
+                contents.style.marginLeft = leftMargin + 'px';
+            }
+        }
+
+        // Also re-center the contents when the page was resized...
+        window.addEventListener ('resize', CenterContents);
+
+        //
+        // eventWindowLoaded: used to be sure that everything has been loaded first 
+        // 
+        window.addEventListener ('load', eventWindowLoaded, false);	
+        function eventWindowLoaded ()
+        {
+            CenterContents ();
+            canvasApp ();
+        }
+
+    </script>
+
+</head>
+
+<body> 
+
+    <div id='contents'>
+
+        <div id='controls' style='float:left;margin-right:7px'>
+
+            <div id='StartBtn' class='button enabledbutton'>Start</div>
+
+            <div style='height:5px'> </div>
+
+            <!-- Wheel initial position -->
+            <div class='dataInput' style='height: 40px'>
+                <div>
+                    <div class='label' style='float:left'>Wheel Initial Position (&phi;<sub>0</sub>): </div>
+                    <output id='wheelInitPosOutput' class='label' style='width:40px;float:right;text-align: center;'>45</output> 
+                </div>
+                <input id='wheelInitPosSlider' style='width:170px' type='range' min='-180' max='180' step='1' value='45'/>
+            </div>
+
+            <div style='height:5px'> </div>
+
+            <!-- Wheel speed -->
+            <div class='dataInput' style='height: 40px'>
+                <div>
+                    <div class='label' style='float:left'>Wheel Speed (&omega;): </div>
+                    <output id='wheelSpeedOutput' class='label' style='width:40px;float:right;text-align: center;'>0.05</output> 
+                </div>
+                <input id='wheelSpeedSlider' style='width:170px' type='range' min='-0.35' max='0.35' step='0.01' value='0.05'/>
+            </div>
+
+            <div style='height:5px'> </div>
+
+            <!-- Wheel Radius -->
+            <div class='dataInput' style='height: 40px'>
+                <div>
+                    <div class='label' style='float:left'>Wheel Radius (<i>r</i>): </div>
+                    <output id='wheelRadiusOutput' class='label' style='width:40px;float:right;text-align: center;'>75</output> 
+                </div>
+                <input id='wheelRadiusSlider' style='width:170px' type='range' min='10' max='100' step='1' value='75'/>
+            </div>
+
+            <div style='height:5px'> </div>
+
+            <!-- Initial pendulum angle --> 
+            <div class='dataInput' style='height: 40px'>
+                <div>
+                    <div class='label' style='float:left'>Initial Pendulum Angle (&theta;<sub>0</sub>): </div>
+                    <output id='initAngleOutput' class='label' style='width:40px;float:right;text-align: center;'>30</output>
+                </div>
+                <input id='initAngleSlider' style='width:170px' type='range' min='-75' max='75' step='0.1' value='30'/>
+            </div>
+
+            <div style='height:5px'> </div>
+
+            <div class='dataInput' style='height: 40px'>
+                <div>
+                    <div class='label' style='float:left'>Pendulum Length (&ell;): </div>
+                    <output id='lengthOutput' class='label' style='width:40px;float:right;text-align: center;'>75</output>
+                </div>
+                <input id='lengthSlider' style='width:170px' type='range' min='5' max='110' step='1' value='75'/>
+            </div>
+
+            <div style='height:5px'> </div>
+
+            <div class='dataInput' style='height: 40px'>
+                <div>
+                    <div class='label' style='float:left'>Gravity Constant (<i>g</i>): </div>
+                    <output id='gravityOutput' class='label' style='width:40px;float:right;text-align: center;'>9.8</output>
+                </div>
+                <input id='gravitySlider' style='width:170px' type='range' min='0.1' max='50' step='0.1' value='9.8'/>
+            </div>
+
+            <div style='height:5px'> </div>
+
+            <div id='ResetBtn' class='button enabledbutton'>Reset to Defaults</div>
+
+        </div>    
+
+        <div style='float: left; position:relative; display:inline-block;'>
+
+            <canvas id='canvasSimArea' width='500' height='500'>
+                Your browser does not support the HTML 5 Canvas. 
+            </canvas>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+
+
+
+
