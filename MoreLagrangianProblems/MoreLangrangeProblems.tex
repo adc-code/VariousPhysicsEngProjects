@@ -1,0 +1,658 @@
+\documentclass[letterpaper,8pt]{article}
+
+\usepackage[letterpaper,margin=0.75in]{geometry}
+
+\usepackage{nicefrac}
+\usepackage{pstricks}
+\usepackage{pst-plot}
+\usepackage{pst-node}
+\usepackage{pst-circ}
+\usepackage{pst-coil}
+\usepackage{multido}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{amsmath,mathtools,nicefrac}
+\usepackage{soul}
+\usepackage{psvectorian}
+
+
+%\renewcommand{\familydefault}{\sfdefault}
+\usepackage{helvet}
+\usepackage{mathpazo}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2.5ex}
+\usepackage{setspace}
+\usepackage[superscript,biblabel]{cite}
+
+% disables chapter, section and subsection numbering
+\setcounter{secnumdepth}{-1} 
+
+
+\begin{document}
+
+\fbox{\parbox{\linewidth}{\em \LARGE \centering More Lagrangian Problems }}
+
+\section{Lagrange's Equation}
+
+Basically it is the `next level' of Newton's laws of motion.  It allows one to solve much more
+complicated dynamics systems.  
+
+The Lagranian is defined as:
+\[
+\mathsf{Lagrangian} = \mathsf{Kinetic Energy} - \mathsf{Potential Energy} \Rightarrow \mathcal{L} = T - V
+\]
+
+To obtain the equations of motion, we need to solve:
+\[
+\frac{d}{dt}\left( \frac{\partial\mathcal{L}}{\partial \dot{q}_i} \right) - 
+\frac{\partial\mathcal{L}}{\partial q_i} = 0
+\]
+
+
+\section{Triple Pendulum}
+
+Have already solutions for simple and double pendulums, so hence the triple pendulum
+is the next on the list.  Perhaps the $n$-link pendulum will be next.
+
+\begin{center}
+\psset{unit=1in}
+\begin{pspicture}(0,-0.8)(4,2)
+\psframe[fillstyle=hlines,hatchcolor=gray,hatchsep=1pt](1.5,2)(2.5,1.9)
+\psline(2,1.9)(2.3,0.9)(2.9,0.1)(3.2,-0.7)
+\pscircle[fillstyle=solid,fillcolor=black](2,1.9){1.5pt}
+\pscircle[fillstyle=solid,fillcolor=gray](2.3,0.9){3pt}
+\pscircle[fillstyle=solid,fillcolor=gray](2.9,0.1){3pt}
+\pscircle[fillstyle=solid,fillcolor=gray](3.2,-0.7){3pt}
+\rput(2.25,1.45){$\ell_1$}
+\rput(2.75,0.47){$\ell_2$}
+\rput(3.15,-0.3){$\ell_3$}
+\rput(2.47,0.9){$m_1$}
+\rput(3.07,0.1){$m_2$}
+\rput(3.37,-0.7){$m_3$}
+\psline[linewidth=0pt](2,1.75)(2,0.95)
+\psline[linewidth=0pt](2.3,0.75)(2.3,0.05)
+\psline[linewidth=0pt](2.9,-0.05)(2.9,-0.75)
+\rput(1.88,1.05){$\theta_1$}
+\psline[linewidth=0.5pt](2,1.05)(1.95,1.05)
+\psarc[linewidth=0.5pt]{<->}(2,1.9){0.85}{270}{286}
+\rput(2.18,0.15){$\theta_2$}
+\psline[linewidth=0.5pt](2.3,0.15)(2.25,0.15)
+\psarc[linewidth=0.5pt]{<->}(2.3,0.9){0.75}{270}{305.8}
+\rput(2.78,-0.65){$\theta_3$}
+\psline[linewidth=0.5pt](2.9,-0.65)(2.85,-0.65)
+\psarc[linewidth=0.5pt]{<->}(2.9,0.1){0.75}{270}{290}
+\end{pspicture}
+\end{center}
+
+
+The positions of the masses can be calculated as:
+\begin{align*}
+x_1 &= \ell_1 \sin \theta_1  \\
+y_1 &= -\ell_1 \cos \theta_1 \\
+x_2 &= \ell_1 \sin \theta_1 + \ell_2 \sin \theta_2 
+     = x_1 + \ell_2 \sin \theta_2 \\
+y_2 &= -\ell_1 \cos \theta_1 - \ell_2 \cos \theta_2
+     = y_2 - \ell_2 \cos \theta_2 \\
+x_3 &= \ell_1 \sin \theta_1 + \ell_2 \sin \theta_2 + \ell_3 \sin \theta_3 
+     = x_2 + \ell_3 \sin \theta_3 \\
+y_3 &= -\ell_1 \cos \theta_1 - \ell_2 \cos \theta_2 - \ell_3 \cos \theta_3 
+     = y_2 - \ell_3 \cos \theta_3
+\end{align*}
+
+The speeds of the masses can be found by taking the derivatives:
+\begin{align*}
+\dot{x}_1 &= \ell_1 \cos \theta_1 \cdot \dot{\theta}_1 \\
+\dot{y}_1 &= \ell_1 \sin \theta_1 \cdot \dot{\theta}_1 \\
+\dot{x}_2 &= \ell_1 \cos \theta_1 \cdot \dot{\theta}_1 + \ell_2 \cos \theta_2 \cdot \dot{\theta}_2 \\
+\dot{y}_2 &= \ell_1 \sin \theta_1 \cdot \dot{\theta}_1 + \ell_2 \sin \theta_2 \cdot \dot{\theta}_2 \\
+\dot{x}_3 &= \ell_1 \cos \theta_1 \cdot \dot{\theta}_1 + \ell_2 \cos \theta_2 \cdot \dot{\theta}_2 + \ell_3 \cos \theta_3 \cdot \dot{\theta}_3 \\
+\dot{y}_3 &= \ell_1 \sin \theta_1 \cdot \dot{\theta}_1 + \ell_2 \sin \theta_2 \cdot \dot{\theta}_2 + \ell_3 \sin \theta_3 \cdot \dot{\theta}_3
+\end{align*}
+
+Now solving for the \emph{kinetic energy}:
+\begin{align*}
+T = \frac{1}{2} mv^2 &= \frac{1}{2} m \left( \sqrt{\dot{x}^2 + \dot{y}^2 }\right)^2 \\
+  &= \frac{1}{2} m_1 \left( \dot{x}_1^2 + \dot{y}_1^2 \right) + \frac{1}{2} m_2 \left( \dot{x}_2^2 + \dot{y}_2^2 \right) + \frac{1}{2} m_3 \left( \dot{x}_3^2 + \dot{y}_3^2 \right) \\
+  &= \frac{1}{2} m_1 \left[ \left( \ell_1 \cos \theta_1 \cdot \dot{\theta}_1 \right)^2 
+                + \left( \ell_1 \sin \theta_1 \cdot \dot{\theta}_1 \right)^2 \right] \\
+  & \qquad + \frac{1}{2} m_2 \left[ \left( \ell_1 \cos \theta_1 \cdot \dot{\theta}_1 + \ell_2 \cos \theta_2 \cdot \dot{\theta}_2  \right)^2 
+                + \left( \ell_1 \sin \theta_1 \cdot \dot{\theta}_1 + \ell_2 \sin \theta_2 \cdot \dot{\theta}_2 \right)^2 \right] \\
+  & \qquad + \frac{1}{2} m_3 \left[ \left ( \ell_1 \cos \theta_1 \cdot \dot{\theta}_1 + \ell_2 \cos \theta_2 \cdot \dot{\theta}_2 + \ell_3 \cos \theta_3 \cdot \dot{\theta}_3 \right)^2 
+                + \left( \ell_1 \sin \theta_1 \cdot \dot{\theta}_1 + \ell_2 \sin \theta_2 \cdot \dot{\theta}_2 + \ell_3 \sin \theta_3 \cdot \dot{\theta}_3 \right)^2 \right] \\
+  &= \frac{1}{2} m_1 \left[ \ell_1^2 \cos^2 \theta_1 \cdot \dot{\theta}_1^2 + \ell_1^2 \sin^2 \theta_1 \cdot \dot{\theta}_1^2 \right] \\
+  & \qquad + \frac{1}{2} m_2 \left[ \ell_1^2 \cos^2 \theta_1 \cdot \dot{\theta}_1^2 
+                                      + 2\ell_1\ell_2 \cos \theta_1 \cos \theta_2 \cdot \dot{\theta}_1 \dot{\theta}_2 
+                                      + \ell_2^2 \cos^2 \theta_2 \cdot \dot{\theta}_2^2 \right. \\
+  & \qquad \qquad \qquad \left. + \ell_1^2 \sin^2 \theta_1 \cdot \dot{\theta}_1^2
+                                      + 2\ell_1\ell_2 \sin \theta_1 \sin \theta_2 \cdot \dot{\theta}_1 \dot{\theta}_2
+                                      + \ell_2^2 \sin^2 \theta_2 \cdot \dot{\theta}_2^2 \right] \\
+  & \qquad + \frac{1}{2} m_3 \left[ \ell_1^2 \cos^2 \theta_1 \cdot \dot{\theta}_1^2 
+                                      + \ell_2^2 \cos^2 \theta_2 \cdot \dot{\theta}_2^2 + \ell_3^2 \cos^2 \theta_3 \cdot \dot{\theta}_3^2 
+                                   + \ell_1^2 \sin^2 \theta_1 \cdot \dot{\theta}_1^2  
+                                      + \ell_2^2 \sin^2 \theta_2 \cdot \dot{\theta}_2^2 + \ell_3^2 \sin^2 \theta_3 \cdot \dot{\theta}_3^2 \right. \\
+  & \qquad \qquad \qquad + 2 \ell_1\ell_2 \cos\theta_1\cos \theta_2 \cdot \dot{\theta}_1 \dot{\theta}_2 
+                                      + 2 \ell_1\ell_3 \cos\theta_1\cos \theta_3 \cdot \dot{\theta}_1 \dot{\theta}_3 
+                                      + 2 \ell_2\ell_3 \cos\theta_2\cos \theta_3 \cdot \dot{\theta}_2 \dot{\theta}_3 \\
+  & \qquad \qquad \qquad \left. + 2 \ell_1\ell_2 \sin\theta_1\sin \theta_2 \cdot \dot{\theta}_1 \dot{\theta}_2 
+                                      + 2 \ell_1\ell_3 \sin\theta_1\sin \theta_3 \cdot \dot{\theta}_1 \dot{\theta}_3 
+                                      + 2 \ell_2\ell_3 \sin\theta_2\sin \theta_3 \cdot \dot{\theta}_2 \dot{\theta}_3 \vphantom{\ell_2^2} \right] \\
+  &= \frac{1}{2} m_1 \left( \ell_1^2 \dot{\theta}_1^2 \right) \\
+  & \qquad + \frac{1}{2} m_2 \left( \ell_1^2 \dot{\theta}_1^2 + \ell_2^2\dot{\theta}_2^2 \right. \\
+  & \qquad \qquad \qquad \left. + 2\ell_1\ell_2\dot{\theta}_1\dot{\theta}_2\left(\cos\theta_1\cos \theta_2 + \sin\theta_1\sin \theta_2\right) \vphantom{\ell_2^2} \right) \\
+  & \qquad + \frac{1}{2} m_3 \left( \ell_1^2 \dot{\theta}_1^2 + \ell_2^2 \dot{\theta}_2^2 + \ell_3^2 \dot{\theta}_3^2 \right. \\
+  & \qquad \qquad \qquad + 2\ell_1\ell_2\dot{\theta}_1\dot{\theta}_2\left(\cos\theta_1\cos \theta_2 + \sin\theta_1\sin \theta_2\right) \\
+  & \qquad \qquad \qquad + 2\ell_1\ell_3\dot{\theta}_1\dot{\theta}_3\left(\cos\theta_1\cos \theta_3 + \sin\theta_1\sin \theta_3\right) \\
+  & \qquad \qquad \qquad \left. + 2\ell_2\ell_3\dot{\theta}_2\dot{\theta}_3\left(\cos\theta_2\cos \theta_3 + \sin\theta_2\sin \theta_3\right) \vphantom{\ell_2^2} \right) \\
+  &= \frac{1}{2} \left( m_1 + m_2 + m_3 \right) \ell_1^2 \dot{\theta}_1^2 
+                                      + \frac{1}{2} \left( m_2 + m_3 \right) \ell_2^2 \dot{\theta}_2^2 
+                                      + \frac{1}{2} m_3 \ell_3^2 \dot{\theta}_3^2 \\
+  & \qquad + \left( m_2 + m_3 \right) \ell_1\ell_2\dot{\theta}_1\dot{\theta}_2\left(\cos\theta_1\cos \theta_2 + \sin\theta_1\sin \theta_2\right) \\
+  & \qquad + m_3 \ell_1\ell_3\dot{\theta}_1\dot{\theta}_3\left(\cos\theta_1\cos \theta_3 + \sin\theta_1\sin \theta_3\right) 
+          + m_3 \ell_2\ell_3\dot{\theta}_2\dot{\theta}_3\left(\cos\theta_2\cos \theta_3 + \sin\theta_2\sin \theta_3\right)  \\
+  &= \frac{1}{2} \left( m_1 + m_2 + m_3 \right) \ell_1^2 \dot{\theta}_1^2 
+                                      + \frac{1}{2} \left( m_2 + m_3 \right) \ell_2^2 \dot{\theta}_2^2 
+                                      + \frac{1}{2} m_3 \ell_3^2 \dot{\theta}_3^2 \\
+  & \qquad + \left( m_2 + m_3 \right) \ell_1\ell_2\dot{\theta}_1\dot{\theta}_2 \cos (\theta_1 - \theta_2) 
+          + m_3 \ell_1\ell_3\dot{\theta}_1\dot{\theta}_3 \cos(\theta_1 - \theta_3) 
+          + m_3 \ell_2\ell_3\dot{\theta}_2\dot{\theta}_3 \cos(\theta_2 - \theta_3) \\
+\end{align*}
+
+The \emph{potential energy} is:
+\begin{align*}
+V = mgh &= m_1 g y_1 + m_2 g y_2 + m_3 g y_3 \\
+  &= m_1 g \left( -\ell_1 \cos \theta_1 \right) 
+   + m_2 g \left( -\ell_1 \cos \theta_1 - \ell_2 \cos \theta_2 \right) 
+   + m_3 g \left( -\ell_1 \cos \theta_1 - \ell_2 \cos \theta_2 - \ell_3 \cos \theta_3 \right) \\
+  &= -1 \left[ \vphantom{\frac{1}{1}} (m_1 + m_2 + m_3)g \ell_1 \cos \theta_1 + (m_2 + m_3) g \ell_2 \cos \theta_2 + m_3 g \ell_3 \cos \theta_3 \right] \\ 
+\end{align*}
+
+Now computing the Lagrangian:
+\begin{align*}
+\mathcal{L} &= T - V \\
+   &= \left[ \frac{1}{2} \left( m_1 + m_2 + m_3 \right) \ell_1^2 \dot{\theta}_1^2
+                                      + \frac{1}{2} \left( m_2 + m_3 \right) \ell_2^2 \dot{\theta}_2^2
+                                      + \frac{1}{2} m_3 \ell_3^2 \dot{\theta}_3^2 \right. \\
+   & \qquad \left. + \left( m_2 + m_3 \right) \ell_1\ell_2\dot{\theta}_1\dot{\theta}_2 \cos (\theta_1 - \theta_2)
+            + m_3 \ell_1\ell_3\dot{\theta}_1\dot{\theta}_3 \cos(\theta_1 - \theta_3)
+            + m_3 \ell_2\ell_3\dot{\theta}_2\dot{\theta}_3 \cos(\theta_2 - \theta_3) \vphantom{\frac{1}{1}} \right] \\
+   & \qquad - (-1) \left[ \vphantom{\frac{1}{1}} (m_1 + m_2 + m_3)g \ell_1 \cos \theta_1 + (m_2 + m_3) g \ell_2 \cos \theta_2 + m_3 g \ell_3 \cos \theta_3 \right] \\
+   &= \frac{1}{2} \left( m_1 + m_2 + m_3 \right) \ell_1^2 \dot{\theta}_1^2  
+                                      + \frac{1}{2} \left( m_2 + m_3 \right) \ell_2^2 \dot{\theta}_2^2
+                                      + \frac{1}{2} m_3 \ell_3^2 \dot{\theta}_3^2 \\
+   & \qquad + \left( m_2 + m_3 \right) \ell_1\ell_2\dot{\theta}_1\dot{\theta}_2 \cos (\theta_1 - \theta_2)
+            + m_3 \ell_1\ell_3\dot{\theta}_1\dot{\theta}_3 \cos(\theta_1 - \theta_3)
+            + m_3 \ell_2\ell_3\dot{\theta}_2\dot{\theta}_3 \cos(\theta_2 - \theta_3) \\
+   & \qquad + (m_1 + m_2 + m_3)g \ell_1 \cos \theta_1 + (m_2 + m_3) g \ell_2 \cos \theta_2 + m_3 g \ell_3 \cos \theta_3 \\
+\end{align*}
+
+
+There are a few degrees of freedom, that is $\theta_1$, $\theta_2$, and $\theta_3$.  So to determine the equations of motions, we need
+to compute:
+\[
+\frac{d}{dt}\left( \frac{\partial\mathcal{L}}{\partial \dot{\theta}_1} \right) - 
+\frac{\partial\mathcal{L}}{\partial \theta_1} = 0 
+\qquad\qquad
+\frac{d}{dt}\left( \frac{\partial\mathcal{L}}{\partial \dot{\theta}_2} \right) - 
+\frac{\partial\mathcal{L}}{\partial \theta_2} = 0 
+\qquad\qquad
+\frac{d}{dt}\left( \frac{\partial\mathcal{L}}{\partial \dot{\theta}_3} \right) - 
+\frac{\partial\mathcal{L}}{\partial \theta_3} = 0 
+\] 
+
+Solving for $\theta_1$:
+\begin{align*}
+\frac{\partial \mathcal{L}}{\partial \dot{\theta}_1} &= (m_1 + m_2 + m_3)\ell_1^2 \dot{\theta}_1
+                                                        + (m_2 + m_3)\ell_1\ell_2 \cos(\theta_1 - \theta_2)\dot{\theta}_2
+                                                        + m_3 \ell_1 \ell_3 \cos (\theta_1 - \theta_3)\dot{\theta}_3 \\
+\frac{d}{dt} \left( \frac{\partial \mathcal{L}}{\partial \dot{\theta}_1} \right) &= (m_1 + m_2 + m_3)\ell_1^2 \ddot{\theta}_1 \\
+  & \qquad + (m_2 + m_3)\ell_1\ell_2 \cos(\theta_1 - \theta_2)\ddot{\theta}_2 
+           - (m_2 + m_3)\ell_1\ell_2 \sin(\theta_1 - \theta_2)\dot{\theta}_2\left(\dot{\theta}_1 - \dot{\theta}_2 \right) \\
+  & \qquad + m_3 \ell_1 \ell_3 \cos (\theta_1 - \theta_3)\ddot{\theta}_3 
+           - m_3 \ell_1 \ell_3 \sin (\theta_1 - \theta_3)\dot{\theta}_3 \left( \dot{\theta}_1 - \dot{\theta}_3 \right) \\
+  &= (m_1 + m_2 + m_3)\ell_1^2 \ddot{\theta}_1 
+           + (m_2 + m_3)\ell_1\ell_2 \cos(\theta_1 - \theta_2)\ddot{\theta}_2 
+           + m_3 \ell_1 \ell_3 \cos (\theta_1 - \theta_3)\ddot{\theta}_3 \\
+  & \qquad - (m_2 + m_3)\ell_1\ell_2 \sin(\theta_1 - \theta_2)\dot{\theta}_1\dot{\theta}_2 
+           + (m_1 + m_3)\ell_1\ell_2 \sin(\theta_1 - \theta_2)\dot{\theta}_2^2 \\
+  & \qquad - m_3 \ell_1 \ell_3 \sin (\theta_1 - \theta_3)\dot{\theta}_1\dot{\theta}_3 
+           + m_3 \ell_1 \ell_3 \sin (\theta_1 - \theta_3)\dot{\theta}_3^2 \\
+\frac{\partial \mathcal{L}}{\partial \theta_1} &= - (m_2 + m_3)\ell_1 \ell_2 \sin (\theta_1 - \theta_2) \dot{\theta}_1 \dot{\theta}_2
+           - m_3 \ell_1 \ell_3 \sin (\theta_1 - \theta_3) \dot{\theta}_1\dot{\theta}_3
+           - (m_1 + m_2 + m_3) g \ell_1 \sin \theta_1 \\
+  &= -1 \left[ \vphantom{\frac{1}{2}} (m_2 + m_3)\ell_1 \ell_2 \sin (\theta_1 - \theta_2) \dot{\theta}_1 \dot{\theta}_2
+           + m_3 \ell_1 \ell_3 \sin (\theta_1 - \theta_3) \dot{\theta}_1\dot{\theta}_3
+           + (m_1 + m_2 + m_3) g \ell_1 \sin \theta_1 \right] \\
+\end{align*}
+\begin{align*}
+\frac{d}{dt} \left( \frac{\partial \mathcal{L}}{\partial \dot{\theta}_1} \right) - \frac{\partial \mathcal{L}}{\partial \theta_1} 
+  &=  (m_1 + m_2 + m_3)\ell_1^2 \ddot{\theta}_1 
+           + (m_2 + m_3)\ell_1\ell_2 \cos(\theta_1 - \theta_2)\ddot{\theta}_2 
+           + m_3 \ell_1 \ell_3 \cos (\theta_1 - \theta_3)\ddot{\theta}_3 \\
+  & \qquad - (m_1 + m_3)\ell_1\ell_2 \sin(\theta_1 - \theta_2)\dot{\theta}_1\dot{\theta}_2  
+           + (m_2 + m_3)\ell_1\ell_2 \sin(\theta_1 - \theta_2)\dot{\theta}_2^2 \\
+  & \qquad - m_3 \ell_1 \ell_3 \sin (\theta_1 - \theta_3)\dot{\theta}_1\dot{\theta}_3  
+           + m_3 \ell_1 \ell_3 \sin (\theta_1 - \theta_3)\dot{\theta}_3^2 \\
+  & \qquad - (-1) \left[ \vphantom{\frac{1}{2}} (m_2 + m_3)\ell_1 \ell_2 \sin (\theta_1 - \theta_2) \dot{\theta}_1 \dot{\theta}_2
+           + m_3 \ell_1 \ell_3 \sin (\theta_1 - \theta_3) \dot{\theta}_1\dot{\theta}_3
+           + (m_1 + m_2 + m_3) g \ell_1 \sin \theta_1 \right] \\
+  &=  (m_1 + m_2 + m_3)\ell_1^2 \ddot{\theta}_1
+           + (m_2 + m_3)\ell_1\ell_2 \cos(\theta_1 - \theta_2)\ddot{\theta}_2
+           + m_3 \ell_1 \ell_3 \cos (\theta_1 - \theta_3)\ddot{\theta}_3 \\
+  & \qquad + (m_2 + m_3)\ell_1\ell_2 \sin(\theta_1 - \theta_2)\dot{\theta}_2^2 
+           + m_3 \ell_1 \ell_3 \sin (\theta_1 - \theta_3)\dot{\theta}_3^2 
+           + (m_1 + m_2 + m_3) g \ell_1 \sin \theta_1 \\
+\end{align*}
+
+Solving for $\theta_2$:
+\begin{align*}
+\frac{\partial \mathcal{L}}{\partial \dot{\theta}_2} &= (m_2 + m_3) \ell_2^2 \dot{\theta}_2 
+           + (m_2 + m_3) \ell_1 \ell_2 \cos (\theta_1 - \theta_2) \dot{\theta}_1
+           + m_3 \ell_2 \ell_3 \cos (\theta_2 - \theta_3) \dot{\theta}_3 \\
+\frac{d}{dt} \left( \frac{\partial \mathcal{L}}{\partial \dot{\theta}_2} \right) &= (m_2 + m_3) \ell_2^2 \ddot{\theta}_2 \\
+& \qquad   + (m_2 + m_3) \ell_1 \ell_2 \cos (\theta_1 - \theta_2) \ddot{\theta}_1 
+           + (m_2 + m_3) \ell_1 \ell_2 (-1)\sin (\theta_1 - \theta_2) \dot{\theta}_1 (\dot{\theta_1} - \dot{\theta_2}) \\
+& \qquad   + m_3 \ell_2 \ell_3 \cos (\theta_2 - \theta_3) \ddot{\theta}_3 
+           + m_3 \ell_2 \ell_3 (-1)\sin (\theta_2 - \theta_3) \dot{\theta}_3 (\dot{\theta_2} - \dot{\theta_3}) \\
+&= (m_2 + m_3) \ell_2^2 \ddot{\theta}_2 + (m_2 + m_3) \ell_1 \ell_2 \cos (\theta_1 - \theta_2) \ddot{\theta}_1 + m_3 \ell_2 \ell_3 \cos (\theta_2 - \theta_3) \ddot{\theta}_3 \\
+& \qquad   - (m_2 + m_3) \ell_1 \ell_2 \sin (\theta_1 - \theta_2) \dot{\theta}_1^2 + (m_2 + m_3) \ell_1 \ell_2 \sin (\theta_1 - \theta_2) \dot{\theta}_1\dot{\theta_2} \\
+& \qquad   - m_3 \ell_2 \ell_3 \sin (\theta_2 - \theta_3) \dot{\theta}_2\dot{\theta}_3 + m_3 \ell_2 \ell_3 \sin (\theta_2 - \theta_3) \dot{\theta}_3^2 \\
+\frac{\partial \mathcal{L}}{\partial \theta_2} &= \left( m_2 + m_3 \right) \ell_1\ell_2\dot{\theta}_1\dot{\theta}_2(-1)\sin (\theta_1 - \theta_2)(-1) 
+            + m_3 \ell_2\ell_3\dot{\theta}_2\dot{\theta}_3 (-1)\sin(\theta_2 - \theta_3) 
+            + (m_2 + m_3) g \ell_2 (-1)\sin \theta_2 \\
+&= -1 \left[ \vphantom{\frac{1}{2}} -\left( m_2 + m_3 \right) \ell_1\ell_2\dot{\theta}_1\dot{\theta}_2\sin (\theta_1 - \theta_2)  
+            + m_3 \ell_2\ell_3\dot{\theta}_2\dot{\theta}_3 \sin(\theta_2 - \theta_3)
+            + (m_2 + m_3) g \ell_2 \sin \theta_2 \right] \\
+\frac{d}{dt} \left( \frac{\partial \mathcal{L}}{\partial \dot{\theta}_2} \right) - \frac{\partial \mathcal{L}}{\partial \theta_2} &= 
+(m_2 + m_3) \ell_2^2 \ddot{\theta}_2 + (m_2 + m_3) \ell_1 \ell_2 \cos (\theta_1 - \theta_2) \ddot{\theta}_1 + m_3 \ell_2 \ell_3 \cos (\theta_2 - \theta_3) \ddot{\theta}_3 \\
+& \qquad   - (m_2 + m_3) \ell_1 \ell_2 \sin (\theta_1 - \theta_2) \dot{\theta}_1^2 + (m_2 + m_3) \ell_1 \ell_2 \sin (\theta_1 - \theta_2) \dot{\theta}_1\dot{\theta_2} \\
+& \qquad   - m_3 \ell_2 \ell_3 \sin (\theta_2 - \theta_3) \dot{\theta}_2\dot{\theta}_3 + m_3 \ell_2 \ell_3 \sin (\theta_2 - \theta_3) \dot{\theta}_3^2 \\
+& \qquad - (-1) \left[ \vphantom{\frac{1}{2}} -\left( m_2 + m_3 \right) \ell_1\ell_2\dot{\theta}_1\dot{\theta}_2\sin (\theta_1 - \theta_2)  
+            + m_3 \ell_2\ell_3\dot{\theta}_2\dot{\theta}_3 \sin(\theta_2 - \theta_3)
+            + (m_2 + m_3) g \ell_2 \sin \theta_2 \right] \\
+&= (m_2 + m_3) \ell_1 \ell_2 \cos (\theta_1 - \theta_2) \ddot{\theta}_1 + (m_2 + m_3) \ell_2^2 \ddot{\theta}_2 + m_3 \ell_2 \ell_3 \cos (\theta_2 - \theta_3) \ddot{\theta}_3 \\
+& \qquad    - (m_2 + m_3) \ell_1 \ell_2 \sin (\theta_1 - \theta_2) \dot{\theta}_1^2 + m_3 \ell_2 \ell_3 \sin (\theta_2 - \theta_3) \dot{\theta}_3^2 + (m_2 + m_3) g \ell_2 \sin \theta_2 
+\end{align*}
+
+Solving for $\theta_3$:
+\begin{align*}
+\frac{\partial \mathcal{L}}{\partial \dot{\theta}_3} &= m_3 \ell_3^2 \dot{\theta}_3 
+            + m_3 \ell_1 \ell_3 \dot{\theta}_1 \cos (\theta_1 - \theta_3) + m_3 \ell_2 \ell_3 \dot{\theta}_2 \cos (\theta_2 - \theta_3) \\
+\frac{d}{dt} \left( \frac{\partial L}{\partial \dot{\theta}_3} \right) &= m_3 \ell_3^2 \ddot{\theta}_3 \\
+& \qquad    + m_3 \ell_1 \ell_3 \cos (\theta_1 - \theta_3) \ddot{\theta}_1 + m_3 \ell_1 \ell_3 \dot{\theta}_1 (-1) \sin (\theta_1 - \theta_3) (\dot{\theta}_1 - \dot{\theta}_3) \\
+& \qquad    + m_3 \ell_2 \ell_3 \cos (\theta_2 - \theta_3) \ddot{\theta}_2 + m_3 \ell_2 \ell_3 \dot{\theta}_2 (-1) \sin (\theta_2 - \theta_3) (\dot{\theta}_2 - \dot{\theta}_3) \\
+           &= m_3 \ell_1 \ell_3 \cos (\theta_1 - \theta_3) \ddot{\theta}_1 + m_3 \ell_2 \ell_3 \cos (\theta_2 - \theta_3) \ddot{\theta}_2 + m_3 \ell_3^2 \ddot{\theta}_3 \\
+& \qquad    - m_3 \ell_1 \ell_3 \sin (\theta_1 - \theta_3) \dot{\theta}_1^2 + m_3 \ell_1 \ell_3 \sin (\theta_1 - \theta_3) \dot{\theta}_1 \dot{\theta}_3 \\
+& \qquad    - m_3 \ell_2 \ell_3 \sin (\theta_2 - \theta_3) \dot{\theta}_2^2 + m_3 \ell_2 \ell_3 \sin (\theta_2 - \theta_3) \dot{\theta}_2 \dot{\theta}_3 \\
+\frac{\partial L}{\partial \theta_3} &= m_3 \ell_1 \ell_3 \dot{\theta}_1 \dot{\theta}_3 (-1) \sin ( \theta_1 - \theta_3) (-1) 
+            + m_3 \ell_2 \ell_3 \dot{\theta}_2 \dot{\theta}_3 (-1) \sin (\theta_2 - \theta_3) (-1) 
+            + m_3 g \ell_3 (-1) \sin \theta_3 \\
+           &= m_3 \ell_1 \ell_3 \sin (\theta_1 - \theta_3) \dot{\theta}_1 \dot{\theta}_3
+            + m_3 \ell_2 \ell_3 \sin (\theta_2 - \theta_3) \dot{\theta}_2 \dot{\theta}_3 
+            - m_3 g \ell_3 \sin \theta_3 \\
+\frac{d}{dt} \left( \frac{\partial L}{\partial \dot{\theta}_3} \right) - \frac{\partial L}{\partial \theta_3} &= 
+              m_3 \ell_1 \ell_3 \cos (\theta_1 - \theta_3) \ddot{\theta}_1 + m_3 \ell_2 \ell_3 \cos (\theta_2 - \theta_3) \ddot{\theta}_2 + m_3 \ell_3^2 \ddot{\theta}_3 \\
+& \qquad    - m_3 \ell_1 \ell_3 \sin (\theta_1 - \theta_3) \dot{\theta}_1^2 + m_3 \ell_1 \ell_3 \sin (\theta_1 - \theta_3) \dot{\theta}_1 \dot{\theta}_3 \\
+& \qquad    - m_3 \ell_2 \ell_3 \sin (\theta_2 - \theta_3) \dot{\theta}_2^2 + m_3 \ell_2 \ell_3 \sin (\theta_2 - \theta_3) \dot{\theta}_2 \dot{\theta}_3 \\
+& \qquad  - \left[ \vphantom{\frac{1}{2}} 
+              m_3 \ell_1 \ell_3 \sin (\theta_1 - \theta_3) \dot{\theta}_1 \dot{\theta}_3
+            + m_3 \ell_2 \ell_3 \sin (\theta_2 - \theta_3) \dot{\theta}_2 \dot{\theta}_3 
+            - m_3 g \ell_3 \sin \theta_3  \right] \\
+           &= m_3 \ell_1 \ell_3 \cos (\theta_1 - \theta_3) \ddot{\theta}_1 + m_3 \ell_2 \ell_3 \cos (\theta_2 - \theta_3) \ddot{\theta}_2 + m_3 \ell_3^2 \ddot{\theta}_3 \\
+& \qquad    - m_3 \ell_1 \ell_3 \sin (\theta_1 - \theta_3) \dot{\theta}_1^2 - m_3 \ell_2 \ell_3 \sin (\theta_2 - \theta_3) \dot{\theta}_2^2  \\
+& \qquad    + m_3 g \ell_3 \sin \theta_3  \\
+\end{align*}
+
+
+Therefore, the equations of motion (or governing equations) are:
+\begin{multline*}
+(m_1 + m_2 + m_3)\ell_1^2 \ddot{\theta}_1 + (m_2 + m_3)\ell_1\ell_2 \cos(\theta_1 - \theta_2)\ddot{\theta}_2 + m_3 \ell_1 \ell_3 \cos (\theta_1 - \theta_3)\ddot{\theta}_3  \\
+    + (m_2 + m_3)\ell_1\ell_2 \sin(\theta_1 - \theta_2)\dot{\theta}_2^2 + m_3 \ell_1 \ell_3 \sin (\theta_1 - \theta_3)\dot{\theta}_3^2 + (m_1 + m_2 + m_3) g \ell_1 \sin \theta_1 = 0 
+\end{multline*}
+\begin{multline*}
+(m_2 + m_3) \ell_1 \ell_2 \cos (\theta_1 - \theta_2) \ddot{\theta}_1 + (m_2 + m_3) \ell_2^2 \ddot{\theta}_2 + m_3 \ell_2 \ell_3 \cos (\theta_2 - \theta_3) \ddot{\theta}_3  \\
+    - (m_2 + m_3) \ell_1 \ell_2 \sin (\theta_1 - \theta_2) \dot{\theta}_1^2 + m_3 \ell_2 \ell_3 \sin (\theta_2 - \theta_3) \dot{\theta}_3^2 + (m_2 + m_3) g \ell_2 \sin \theta_2 = 0 
+\end{multline*}
+\begin{multline*}
+m_3 \ell_1 \ell_3 \cos (\theta_1 - \theta_3) \ddot{\theta}_1 + m_3 \ell_2 \ell_3 \cos (\theta_2 - \theta_3) \ddot{\theta}_2 + m_3 \ell_3^2 \ddot{\theta}_3  \\
+    - m_3 \ell_1 \ell_3 \sin (\theta_1 - \theta_3) \dot{\theta}_1^2 - m_3 \ell_2 \ell_3 \sin (\theta_2 - \theta_3) \dot{\theta}_2^2 + m_3 g \ell_3 \sin \theta_3 = 0 
+\end{multline*}
+
+Two quick checks, if $m_2, m_3, \ell_1,$\ and $\ell_3$ are all $0$, then the equations should reduce to a single pendulum; and if 
+$m_3$ and $\ell_3$ are $0$ then the system should reduce to a double pendulum.
+
+Check 1, if $m_2, m_3, \ell_1,$\ and $\ell_3$ are 0, then we only have one equation:
+\[
+m_1\ell_1^2 \ddot{\theta}_1 + m_1 g \ell_1 \sin\theta_1 = 0
+\quad \Rightarrow \quad
+\ddot{\theta}_1 + \frac{g}{\ell_1}\sin \theta_1 = 0
+\]
+And this describes a simple pendulum.
+
+Check 2, if $m_3$ and $\ell_3$ are $0$ then, we have two equations:
+\begin{align*}
+(m_1 + m_2)\ell_1^2 \ddot{\theta}_1 + m_2\ell_1\ell_2 \cos(\theta_1 - \theta_2)\ddot{\theta}_2 + m_2\ell_1\ell_2 \sin(\theta_1 - \theta_2)\dot{\theta}_2^2
+                + (m_1 + m_2)g \ell_1 \sin \theta_1 &= 0 \\
+m_2 \ell_1 \ell_2 \cos (\theta_1 - \theta_2) \ddot{\theta}_1 + m_2 \ell_2^2 \ddot{\theta}_2 - m_2 \ell_1 \ell_2 \sin (\theta_1 - \theta_2) \dot{\theta}_1^2
+                + m_2 g \ell_2 \sin \theta_2 &= 0 \\
+\intertext{Divide equation 1 by $\ell_1$ and equation 2 by $m_2$ \& $\ell_2$:}
+(m_1 + m_2)\ell_1 \ddot{\theta}_1 + m_2\ell_2 \cos(\theta_1 - \theta_2)\ddot{\theta}_2 + m_2\ell_2 \sin(\theta_1 - \theta_2)\dot{\theta}_2^2
+                + (m_1 + m_2)g \sin \theta_1 &= 0 \\
+\ell_1 \cos (\theta_1 - \theta_2) \ddot{\theta}_1 + \ell_2 \ddot{\theta}_2 - \ell_1 \sin (\theta_1 - \theta_2) \dot{\theta}_1^2
+                + g \sin \theta_2 &= 0 \\
+\end{align*}
+And from past work, these are the equations for a double pendulum.
+
+\subsection{Simulation and solving numerically}
+
+The `easy' solution is to use some linear alegbra:
+\[
+\left[ A \right] \left[ \ddot{\theta}_i \right] = \left[ B \right]
+\quad \Rightarrow \quad
+ \left[ \ddot{\theta}_i \right] = \left[ A \right]^{-1} \left[ B \right]
+\]
+Arranging the solution equation into matrices we have:
+\begin{multline*}
+\left[ \begin{array}{ccc}
+       (m_1 + m_2 + m_3)\ell_1^2 & (m_2 + m_3)\ell_1\ell_2 \cos(\theta_1 - \theta_2) & m_3 \ell_1 \ell_3 \cos (\theta_1 - \theta_3) \\
+       (m_2 + m_3) \ell_1 \ell_2 \cos (\theta_1 - \theta_2) & (m_2 + m_3) \ell_2^2 & m_3 \ell_2 \ell_3 \cos (\theta_2 - \theta_3) \\
+       m_3 \ell_1 \ell_3 \cos (\theta_1 - \theta_3) & m_3 \ell_2 \ell_3 \cos (\theta_2 - \theta_3) & m_3 \ell_3^2 
+\end{array}\right]
+\left[ \begin{array}{ccc}
+       \ddot{\theta}_1 \\ \ddot{\theta}_2 \\ \ddot{\theta}_3 
+\end{array}\right]
+=
+\\
+\left[ \begin{array}{ccc}
+    -(m_2 + m_3)\ell_1\ell_2 \sin(\theta_1 - \theta_2)\dot{\theta}_2^2 - m_3 \ell_1 \ell_3 \sin (\theta_1 - \theta_3)\dot{\theta}_3^2 - (m_1 + m_2 + m_3) g \ell_1 \sin \theta_1 \\
+    (m_2 + m_3) \ell_1 \ell_2 \sin (\theta_1 - \theta_2) \dot{\theta}_1^2 - m_3 \ell_2 \ell_3 \sin (\theta_2 - \theta_3) \dot{\theta}_3^2 - (m_2 + m_3) g \ell_2 \sin \theta_2  \\
+    m_3 \ell_1 \ell_3 \sin (\theta_1 - \theta_3) \dot{\theta}_1^2 + m_3 \ell_2 \ell_3 \sin (\theta_2 - \theta_3) \dot{\theta}_2^2 - m_3 g \ell_3 \sin \theta_3 
+\end{array}\right]
+\end{multline*}
+
+So then,
+\begin{multline*}
+\left[ \begin{array}{ccc}
+       \ddot{\theta}_1 \\ \ddot{\theta}_2 \\ \ddot{\theta}_3 
+\end{array}\right]
+= 
+\left[ \begin{array}{ccc}
+       (m_1 + m_2 + m_3)\ell_1^2 & (m_2 + m_3)\ell_1\ell_2 \cos(\theta_1 - \theta_2) & m_3 \ell_1 \ell_3 \cos (\theta_1 - \theta_3) \\
+       (m_2 + m_3) \ell_1 \ell_2 \cos (\theta_1 - \theta_2) & (m_2 + m_3) \ell_2^2 & m_3 \ell_2 \ell_3 \cos (\theta_2 - \theta_3) \\
+       m_3 \ell_1 \ell_3 \cos (\theta_1 - \theta_3) & m_3 \ell_2 \ell_3 \cos (\theta_2 - \theta_3) & m_3 \ell_3^2 
+\end{array}\right]^{-1} \\
+\times
+\left[ \begin{array}{ccc}
+    -(m_2 + m_3)\ell_1\ell_2 \sin(\theta_1 - \theta_2)\dot{\theta}_2^2 - m_3 \ell_1 \ell_3 \sin (\theta_1 - \theta_3)\dot{\theta}_3^2 - (m_1 + m_2 + m_3) g \ell_1 \sin \theta_1 \\
+    (m_2 + m_3) \ell_1 \ell_2 \sin (\theta_1 - \theta_2) \dot{\theta}_1^2 - m_3 \ell_2 \ell_3 \sin (\theta_2 - \theta_3) \dot{\theta}_3^2 - (m_2 + m_3) g \ell_2 \sin \theta_2  \\
+    m_3 \ell_1 \ell_3 \sin (\theta_1 - \theta_3) \dot{\theta}_1^2 + m_3 \ell_2 \ell_3 \sin (\theta_2 - \theta_3) \dot{\theta}_2^2 - m_3 g \ell_3 \sin \theta_3 
+\end{array}\right]
+\end{multline*}
+
+This is what will be used in the Runge Kutta solver
+
+
+\newpage
+\section{Spring-Cart-Pendulum System}
+
+Classic problem involving a spring, pendulum, and horizontal motion.
+
+
+\begin{center}
+\psset{unit=1in}
+\begin{pspicture}(0,0.5)(3,3)
+
+% supports...
+\psframe[fillstyle=hlines,hatchcolor=gray,hatchsep=1pt](0,0.5)(0.1,3)
+\psframe[fillstyle=hlines,hatchcolor=gray,hatchsep=1pt](0.1,2)(2.6,2.1)
+
+% cart...
+\psframe[linewidth=1pt](1.5,2.2)(2.25,2.4)
+\psframe[linewidth=0.5pt,fillstyle=solid,fillcolor=gray!10](1.55,2.4)(2.20,2.45)
+\pscircle[fillstyle=solid,fillcolor=gray](1.6,2.15){0.05}
+\pscircle[fillstyle=solid,fillcolor=gray](2.15,2.15){0.05}
+\rput(2.4,2.3){$m_1$}
+\psline[linewidth=0pt](1.5,2.41)(1.5,2.7)
+\psline{->}(1.5,2.65)(1.65,2.65)
+\rput(1.7,2.65){$x$}
+
+% pendulum...
+\psline(1.875,2.2)(2.3,1)
+\pscircle[fillstyle=solid,fillcolor=black](1.875,2.2){1.5pt}
+\pscircle[fillstyle=solid,fillcolor=gray!10](2.3,1){5pt}
+\psline[linewidth=0pt](1.875,2.15)(1.875,1)
+\psline[linewidth=0pt](1.84,1.05)(1.875,1.05)
+\rput(1.78,1.05){$\theta$}
+\psarc[linewidth=0.5pt]{<->}(1.875,2.2){1.15}{270}{290}
+\rput(2.47,0.9){$m_2$}
+\rput(2.25,1.45){$\ell$}
+
+% spring...
+\pscoil[coilwidth=0.25cm](0.1,2.3)(1.5,2.3)
+\rput(0.8,2.48){$k$}
+
+\end{pspicture}
+\end{center}
+
+There are two things that are moving: the cart and the pendulum.  For the cart we have:
+\[
+\mathsf{Cart\ Position} = x 
+\qquad\qquad
+\mathsf{Cart\ Velocity} = \dot{x} 
+\]
+For the pendulum we have:
+\begin{align*}
+\mathsf{Pendulum\ Position:}\ x &= \ell \sin \theta \\
+                             y &= -\ell \cos \theta \\
+\mathsf{Pendulum\ Velocity:}\ \dot{x} &= \ell \cos \theta \cdot \dot{\theta} \\
+                             \dot{y} &= \ell \sin \theta \cdot \dot{\theta} 
+\end{align*}
+
+Note that since the pendulum is attached to the cart it can move.  Therefore, the total pendulum
+$x$ velocity becomes:
+\begin{align*}
+\dot{x}_{\mathsf{total}} &= \dot{x}_{\mathsf{cart}} + \dot{x}_{\mathsf{pendulum}} \\
+                         &= \dot{x} + \ell \cos \theta \cdot \dot{\theta} 
+\end{align*}
+
+The \emph{kinetic energy} is then:
+\begin{align*}
+T &= \frac{1}{2} mv^2 \\
+  &= \left(\frac{1}{2} mv^2\right)_{\mathsf{cart}} + \left(\frac{1}{2} mv^2\right)_{\mathsf{pendulum}} \\
+  &= \frac{1}{2} m_1 \dot{x}^2 
+   + \frac{1}{2} m_2 \left[ \left( \dot{x} + \ell\cos\theta\cdot\dot{\theta} \right)^2 + \left(\ell\sin\theta\cdot\dot{\theta}\right)^2\right] \\
+  &= \frac{1}{2} m_1 \dot{x}^2
+   + \frac{1}{2} m_2 \left[ \dot{x}^2 + 2\ell\cos\theta\dot{x}\dot{\theta} + \ell^2\cos^2\theta\dot{\theta}^2 + \ell^2\sin^2\theta\dot{\theta}^2 \right] \\
+  &= \frac{1}{2} (m_1 + m_2) \dot{x}^2 + m_2\ell\cos\theta\dot{x}\dot{\theta} + \frac{1}{2}m_2\ell^2\dot{\theta}^2 
+\end{align*}
+
+The \emph{potential energy} is:
+\begin{align*}
+V &= V_{\mathsf{cart}} + V_{\mathsf{pendulum}} \\
+  &= \frac{1}{2}k(\mathsf{Cart\ Position})^2 + mg (\mathsf{Pendulum}\ y\ \mathsf{Position}) \\
+  &= \frac{1}{2}kx^2 + mg (-\ell \cos \theta) \\
+  &= \frac{1}{2}kx^2 - m_2 g \ell \cos \theta
+\end{align*}
+
+The \emph{Lagrangian} becomes:
+\begin{align*}
+L &= T - V \\
+  &= \frac{1}{2} (m_1 + m_2) \dot{x}^2 + m_2\ell\cos\theta\dot{x}\dot{\theta} + \frac{1}{2}m_2\ell^2\dot{\theta}^2 
+       - \frac{1}{2}kx^2 + m_2 g \ell \cos \theta
+\end{align*}
+
+Since we have two variables ($x$\ and $\theta$), we will have two equations of motion:
+\begin{align*}
+\frac{\partial \mathcal{L}}{\partial \dot{x}} &= (m_1 + m_2)\dot{x} + m_2\ell\cos\theta\dot{\theta} \\
+\frac{d}{dt} \left( \frac{\partial \mathcal{L}}{\partial \dot{x}} \right) &= (m_1 + m_2)\ddot{x} 
+         + m_2\ell\cos\theta\ddot{\theta} - m_2\ell\sin\theta\dot{\theta}^2 \\
+\frac{\partial \mathcal{L}}{\partial x} &= - kx \\
+\frac{d}{dt} \left( \frac{\partial \mathcal{L}}{\partial \dot{x}} \right) - \frac{\partial \mathcal{L}}{\partial x} &=
+         (m_1 + m_2)\ddot{x} + m_2\ell\cos\theta\ddot{\theta} - m_2\ell\sin\theta\dot{\theta}^2 + kx 
+\end{align*}
+
+\begin{align*}
+\frac{\partial \mathcal{L}}{\partial \dot{\theta}} &= m_2\ell\cos\theta\dot{x} + m_2\ell^2\dot{\theta} \\
+\frac{d}{dt} \left( \frac{\partial \mathcal{L}}{\partial \dot{\theta}} \right) &= m_2\ell\cos\theta\ddot{x} - m_2\ell\sin\theta\dot{x}\dot{\theta} 
+         + m_2\ell^2\ddot{\theta} \\
+\frac{\partial \mathcal{L}}{\partial \theta} &= -m_2\ell\sin\theta\dot{x}\dot{\theta} - m_2g\ell\sin\theta \\
+         &= - \left[ m_2\ell\sin\theta\dot{x}\dot{\theta} + m_2g\ell\sin\theta \right] \\
+\frac{d}{dt} \left( \frac{\partial \mathcal{L}}{\partial \dot{\theta}} \right) - \frac{\partial \mathcal{L}}{\partial \theta} &=
+         m_2\ell\cos\theta\ddot{x} - m_2\ell\sin\theta\dot{x}\dot{\theta} + m_2\ell^2\ddot{\theta} 
+         + m_2\ell\sin\theta\dot{x}\dot{\theta} + m_2g\ell\sin\theta \\
+         &= m_2\ell\cos\theta\ddot{x} + m_2\ell^2\ddot{\theta} + m_2g\ell\sin\theta \\
+\end{align*}
+
+
+Therefore, the final equations of motion are:
+\begin{align*}
+(m_1 + m_2)\ddot{x} + m_2\ell\cos\theta\ddot{\theta} - m_2\ell\sin\theta\dot{\theta}^2 + kx &= 0 \\
+ m_2\ell\cos\theta\ddot{x} + m_2\ell^2\ddot{\theta} + m_2g\ell\sin\theta &= 0 
+\end{align*}
+
+Solving using some matrix magic:
+\begin{align*}
+\left[ 
+    \begin{array}{cc} m_1 + m_2 & m_2\ell\cos\theta \\
+                      m_2\ell\cos\theta & m_2\ell^2
+    \end{array} 
+\right]
+\left[ 
+    \begin{array}{c}  \ddot{x} \\ \ddot{\theta} 
+    \end{array}
+\right]
+&=
+\left[ 
+    \begin{array}{c}
+         m_2\ell\sin\theta\dot{\theta}^2 - kx \\ -m_2g\ell\sin\theta
+    \end{array}
+\right] \\
+\left[ 
+    \begin{array}{c}  \ddot{x} \\ \ddot{\theta} 
+    \end{array}
+\right]
+&=
+\left[ 
+    \begin{array}{cc} m_1 + m_2 & m_2\ell\cos\theta \\
+                      m_2\ell\cos\theta & m_2\ell^2
+    \end{array} 
+\right]^{-1}
+\left[ 
+    \begin{array}{c}
+         m_2\ell\sin\theta\dot{\theta}^2 - kx \\ -m_2g\ell\sin\theta
+    \end{array}
+\right] 
+\end{align*}
+
+
+\section{Simple Pendulum on a Wheel}
+
+This problem is what the title says, a simple pendulum that is attached to a rotating wheel.
+(that is rotating at a contant velocity).  Note, to keep things easy, inertia is not considered in the 
+wheels motion.
+
+\begin{center}
+\psset{unit=1in}
+\begin{pspicture}(0,0)(4,3)
+\psarc[linewidth=3pt](2,2){1}{0}{360}
+\psline[linewidth=0.5pt](1.95,2)(2.05,2)
+\psline[linewidth=0.5pt](2,1.95)(2,2.05)
+
+\psline[linewidth=2pt](2.707,2.707)(3.957,0.542)
+
+\pscircle[fillstyle=solid,fillcolor=gray!20](2.707,2.707){5pt}
+\pscircle[fillstyle=solid,fillcolor=gray!20](3.957,0.542){13pt}
+
+\psline{*->}(2,2)(2.707,2.707)
+\psarc{->}(2,2){0.85}{100}{160}
+
+\psline[linewidth=0pt](2.707,2.6)(2.707,0.5)
+
+\rput(2.25,2.5){$r$}
+\rput(3.45,1.65){$\ell$}
+\rput(4.25,0.542){$m$}
+\rput(1.6,2.55){$\omega$}
+\rput(3.3,0.6){$\theta$}
+
+\psarc[linewidth=0.5pt]{<->}(2.707,2.707){2.1}{270}{300}
+
+\end{pspicture}
+\end{center}
+
+The math is pretty easy, and it is just a single degree of freedom problem.
+
+First, the angle ($\phi$) of where the pendulum's pivot is on the wheel is at time $t$ is:
+\[
+    \phi = \phi_0 + \omega t
+\]
+Where $\phi_0$ is the initial angle and $\omega$ is the angular speed of the rotating wheel.
+
+The position of the pendulum's pivot is then:
+\[
+x_{\mathsf{pivot}} = r \cos \omega t
+\qquad\qquad
+y_{\mathsf{pivot}} = r \sin \omega t
+\]
+The pendulum's mass position is:
+\[
+x_{\mathsf{pend}} = \ell \sin \theta
+\qquad\qquad
+y_{\mathsf{pend}} = \ell \cos \theta
+\]
+Therefore the final/total position is:
+\[
+x = x_{\mathsf{pivot}} + x_{\mathsf{pend}} = r \cos \omega t + \ell \sin \theta 
+\qquad\qquad
+y = y_{\mathsf{pivot}} + y_{\mathsf{pend}} = r \sin \omega t + \ell \cos \theta
+\]
+
+Now the velocities will be found to make the kinetic energy calculations a little bit easier to determine.
+\[
+\dot{x} = -r\omega \sin\omega t + \ell \cos \theta \dot{\theta}
+\qquad\qquad
+\dot{y} = r\omega \cos \omega t + \ell \sin \theta \dot{\theta}
+\]
+
+Now computing the \emph{kinetic energy}:
+\begin{align*}
+T &= \frac{1}{2} mv^2 = \frac{1}{2} m \left[ \vphantom{\frac{1}{2}} \dot{x}^2 + \dot{y}^2 \right] \\
+  &= \frac{1}{2} m \left[ \vphantom{\frac{1}{2}} (-r\omega \sin\omega t + \ell \cos \theta \dot{\theta})^2 
+                          + (r\omega \cos \omega t + \ell \sin \theta \dot{\theta})^2 \right] \\
+  &= \frac{1}{2} m \left[ \vphantom{\frac{1}{2}} r^2 \omega^2 \sin^2 \omega t - 2r\ell \omega \cos\theta\sin\omega t \dot{\theta} + \ell^2\cos^2\theta \dot{\theta}^2
+                   + r^2\omega^2 \cos^2\omega t + 2r\ell\omega\sin\theta\cos\omega t\dot{\theta} + \ell^2\sin^2\theta \dot{\theta}^2 \right] \\
+  &= \frac{1}{2} m r^2\omega^2 + \frac{1}{2} m\ell^2 \dot{\theta}^2 + mr\ell\omega \sin(\theta - \omega t)\dot{\theta}
+\end{align*}
+
+Next, the \emph{potential energy}:
+\begin{align*}
+V = mgh = mgr \sin \omega t - mg \ell \cos \theta
+\end{align*}
+
+So the Lagrangian becomes:
+\[
+\mathcal{L} = T - V = \frac{1}{2} m r^2\omega^2 + \frac{1}{2} m\ell^2 \dot{\theta}^2 + mr\ell\omega \sin(\theta - \omega t)\dot{\theta} - mgr \sin \omega t + mg \ell \cos \theta
+\]
+
+Now taking some derivatives so that the equation of motion can be found:
+\begin{align*}
+\frac{\partial \mathcal{L}}{\partial \dot{\theta}} &= m\ell^2 \dot{\theta} + mr\ell\omega \sin (\theta - \omega t) \\
+\frac{d}{dt} \left( \frac{\partial \mathcal{L}}{\partial \dot{\theta}} \right) &= 
+            m\ell^2 \ddot{\theta} + mr\ell\omega \cos (\theta - \omega t)\cdot(\dot{\theta} - \omega) \\
+           &= m\ell^2 \ddot{\theta} + mr\ell\omega \cos (\theta - \omega t)\dot{\theta} - mr\ell\omega^2 \cos (\theta - \omega t) \\
+\frac{\partial \mathcal{L}}{\partial \theta} &= mr\ell\omega \cos (\theta - \omega t)\dot{\theta} - mg\ell\sin\theta  \\
+\frac{d}{dt} \left( \frac{\partial \mathcal{L}}{\partial \dot{\theta}} \right) - \frac{\partial \mathcal{L}}{\partial \theta} &=
+            m\ell^2 \ddot{\theta} - mr\ell\omega^2 \cos(\theta - \omega t) + mg\ell\sin\theta 
+\end{align*}
+
+Then after dividing everything by $m\ell^2$, the final equation of motion becomes:
+\[
+\ddot{\theta} - \frac{r\omega^2}{\ell} \cos(\theta - \omega t) + \frac{g}{\ell}\sin \theta = 0
+\]
+
+Two things to note: 1) the mass does not matter; 2) if $r$ or $\omega$ are 0, then the system reduces to a simple pendulum.
+
+\end{document}
+
+
+
+
