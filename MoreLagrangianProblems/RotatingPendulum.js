@@ -128,14 +128,14 @@ function canvasApp ()
         var cnvsHeight = theCanvas.height;
 
         var circCenterX = cnvsWidth / 2;
-        var circCenterY = _dVertPadding + _dMaxCircRadius;
+        var circCenterY = cnvsHeight / 2; //dVertPadding + _dMaxCircRadius;
 
         context.fillStyle = '#dddddd';
 
         // big circle
         context.save ();
         context.beginPath ();
-        context.arc (circCenterX, circCenterY, _dCircRadius, 0, 2*Math.PI, true);
+        context.arc (circCenterX, circCenterY, _dZoomFactor * _dCircRadius, 0, 2*Math.PI, true);
         context.lineWidth = 3;
         context.stroke ();
         context.restore ();         
@@ -149,18 +149,18 @@ function canvasApp ()
             context.moveTo (circCenterX, circCenterY);
          
             // note the negative on the phi... so that things behave a little more 'normally'
-            context.lineTo (circCenterX + _dCircRadius * Math.cos (2 * Math.PI / 9 * i - _dPhi),
-                            circCenterY + _dCircRadius * Math.sin (2 * Math.PI / 9 * i - _dPhi));
+            context.lineTo (circCenterX + _dZoomFactor * _dCircRadius * Math.cos (2 * Math.PI / 9 * i - _dPhi),
+                            circCenterY + _dZoomFactor * _dCircRadius * Math.sin (2 * Math.PI / 9 * i - _dPhi));
             context.stroke ();
             context.restore ();         
         }
 
         // pendulum line
         // again note the negative on the phi
-        var pivotPosX = circCenterX + _dCircRadius * Math.cos (-1 * _dPhi);
-        var pivotPosY = circCenterY + _dCircRadius * Math.sin (-1 * _dPhi);
-        var pendPosX  = pivotPosX + _dPendLength * Math.sin (_dTheta);      
-        var pendPosY  = pivotPosY + _dPendLength * Math.cos (_dTheta);
+        var pivotPosX = circCenterX + _dZoomFactor * _dCircRadius * Math.cos (-1 * _dPhi);
+        var pivotPosY = circCenterY + _dZoomFactor * _dCircRadius * Math.sin (-1 * _dPhi);
+        var pendPosX  = pivotPosX + _dZoomFactor * _dPendLength * Math.sin (_dTheta);      
+        var pendPosY  = pivotPosY + _dZoomFactor * _dPendLength * Math.cos (_dTheta);
 
         context.save ();
         context.beginPath ();
@@ -223,12 +223,14 @@ function canvasApp ()
     var _dGravityConst   = DEFAULT_GRAVITYCONST;
         
     // Finally simulation related stuff...
-    const SIM_STATE_STOP       = 1;
-    const SIM_STATE_PLAY       = 2;
+    const SIM_STATE_STOP = 1;
+    const SIM_STATE_PLAY = 2;
 
     var _dTimeStep  = 0.15;
     var _SimState   = SIM_STATE_STOP;
     var _SimTimerId = 0;
+
+    var _dZoomFactor = 1;
 
 
     //
@@ -426,6 +428,18 @@ function canvasApp ()
     }
 
 
+    // 
+    // OnZoomSliderChange: callback to handle the zoom slider
+    //
+    function OnZoomSliderChange ()
+    {
+        _dZoomFactor = document.getElementById ('zoomSlider').value;
+        document.getElementById ('zoomOutput').value = _dZoomFactor;
+
+        drawScreen ();
+    }
+
+
     //	
     // register all the callbacks...
     //
@@ -449,6 +463,9 @@ function canvasApp ()
 
     document.getElementById ('gravitySlider').addEventListener ('change', OnGravitySliderChange);
     document.getElementById ('gravitySlider').addEventListener ('input', OnGravitySliderChange);
+
+    document.getElementById ('zoomSlider').addEventListener ('change', OnZoomSliderChange);
+    document.getElementById ('zoomSlider').addEventListener ('input', OnZoomSliderChange);
 
     SetParamsValues (true);
     drawScreen ();
